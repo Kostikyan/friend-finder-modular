@@ -118,8 +118,8 @@
               <li th:text="${friendsCount + ' friends'}"></li>
               <li th:if="${profile.id != user.id}">
                 <a th:href="@{'/users/profile/send-request?sender=' + ${profile.id} + '&receiver=' +${user.id}}">
-                <button class="btn-primary" >Add Friend</button>
-              </a></li>
+                  <button class="btn-primary" >Add Friend</button>
+                </a></li>
             </ul>
           </div>
         </div>
@@ -247,13 +247,13 @@
 
                 <form class="post-comment" th:action="@{/users/profile/comment/{postId}(postId=${post.id})}"
                       method="post">
-                    <img th:if="${user.profilePicture == null || user.profilePicture.equalsIgnoreCase('null')}"
-                         src="/images/post-images/difault.png" alt="" class="profile-photo-sm">
-                    <img th:if="${user.profilePicture != null}"
-                         th:src="@{/getProfilePic(imageName=${user.profilePicture})}" alt=""
-                         class="profile-photo-sm">
-                    <input type="text" class="form-control" name="commentaryText"
-                           placeholder="Post a comment">
+                  <img th:if="${user.profilePicture == null || user.profilePicture.equalsIgnoreCase('null')}"
+                       src="/images/post-images/difault.png" alt="" class="profile-photo-sm">
+                  <img th:if="${user.profilePicture != null}"
+                       th:src="@{/getProfilePic(imageName=${user.profilePicture})}" alt=""
+                       class="profile-photo-sm">
+                  <input type="text" class="form-control" name="commentaryText"
+                         placeholder="Post a comment">
                 </form>
               </div>
             </div>

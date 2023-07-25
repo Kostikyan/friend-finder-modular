@@ -1,10 +1,10 @@
 package com.friendfinder.friendfinderweb.controller;
 
-import com.friendfinder.friendfinderweb.entity.User;
-import com.friendfinder.friendfinderweb.entity.UserImage;
-import com.friendfinder.friendfinderweb.security.CurrentUser;
-import com.friendfinder.friendfinderweb.service.UserActivityService;
-import com.friendfinder.friendfinderweb.service.impl.TimelineServiceImpl;
+import com.friendfinder.friendfindercommon.entity.User;
+import com.friendfinder.friendfindercommon.entity.UserImage;
+import com.friendfinder.friendfindercommon.security.CurrentUser;
+import com.friendfinder.friendfindercommon.service.UserActivityService;
+import com.friendfinder.friendfindercommon.service.impl.TimelineServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

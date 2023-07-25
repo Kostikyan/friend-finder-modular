@@ -1,11 +1,11 @@
 package com.friendfinder.friendfinderweb.controller;
 
-import com.friendfinder.friendfinderweb.dto.commentDto.CommentRequestDto;
-import com.friendfinder.friendfinderweb.dto.postLikeDto.PostLikeDto;
-import com.friendfinder.friendfinderweb.entity.Post;
-import com.friendfinder.friendfinderweb.entity.types.LikeStatus;
-import com.friendfinder.friendfinderweb.security.CurrentUser;
-import com.friendfinder.friendfinderweb.service.*;
+import com.friendfinder.friendfindercommon.dto.commentDto.CommentRequestDto;
+import com.friendfinder.friendfindercommon.dto.postLikeDto.PostLikeDto;
+import com.friendfinder.friendfindercommon.entity.Post;
+import com.friendfinder.friendfindercommon.entity.types.LikeStatus;
+import com.friendfinder.friendfindercommon.security.CurrentUser;
+import com.friendfinder.friendfindercommon.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

@@ -1,11 +1,11 @@
 package com.friendfinder.friendfinderweb.controller;
 
-import com.friendfinder.friendfinderweb.entity.Education;
-import com.friendfinder.friendfinderweb.entity.WorkExperiences;
-import com.friendfinder.friendfinderweb.security.CurrentUser;
-import com.friendfinder.friendfinderweb.service.EducationService;
-import com.friendfinder.friendfinderweb.service.UserActivityService;
-import com.friendfinder.friendfinderweb.service.WorkExperiencesService;
+import com.friendfinder.friendfindercommon.entity.Education;
+import com.friendfinder.friendfindercommon.entity.WorkExperiences;
+import com.friendfinder.friendfindercommon.security.CurrentUser;
+import com.friendfinder.friendfindercommon.service.EducationService;
+import com.friendfinder.friendfindercommon.service.UserActivityService;
+import com.friendfinder.friendfindercommon.service.WorkExperiencesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

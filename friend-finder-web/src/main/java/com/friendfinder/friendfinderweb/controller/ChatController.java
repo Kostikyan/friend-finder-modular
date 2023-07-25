@@ -1,13 +1,13 @@
 package com.friendfinder.friendfinderweb.controller;
 
-import com.friendfinder.friendfinderweb.entity.Chat;
-import com.friendfinder.friendfinderweb.entity.Message;
-import com.friendfinder.friendfinderweb.entity.User;
-import com.friendfinder.friendfinderweb.security.CurrentUser;
-import com.friendfinder.friendfinderweb.service.ChatService;
-import com.friendfinder.friendfinderweb.service.FriendRequestService;
-import com.friendfinder.friendfinderweb.service.MessageService;
-import com.friendfinder.friendfinderweb.service.UserService;
+import com.friendfinder.friendfindercommon.entity.Chat;
+import com.friendfinder.friendfindercommon.entity.Message;
+import com.friendfinder.friendfindercommon.entity.User;
+import com.friendfinder.friendfindercommon.security.CurrentUser;
+import com.friendfinder.friendfindercommon.service.ChatService;
+import com.friendfinder.friendfindercommon.service.FriendRequestService;
+import com.friendfinder.friendfindercommon.service.MessageService;
+import com.friendfinder.friendfindercommon.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
