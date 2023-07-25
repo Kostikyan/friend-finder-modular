@@ -1,8 +1,8 @@
 package com.friendfinder.friendfinderweb.controller;
 
-import com.friendfinder.friendfinderweb.security.CurrentUser;
-import com.friendfinder.friendfinderweb.service.InterestsService;
-import com.friendfinder.friendfinderweb.service.UserActivityService;
+import com.friendfinder.friendfindercommon.security.CurrentUser;
+import com.friendfinder.friendfindercommon.service.InterestsService;
+import com.friendfinder.friendfindercommon.service.UserActivityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

@@ -1,10 +1,10 @@
 package com.friendfinder.friendfinderweb.controller;
 
-import com.friendfinder.friendfinderweb.dto.userDto.UserRegisterRequestDto;
-import com.friendfinder.friendfinderweb.entity.Country;
-import com.friendfinder.friendfinderweb.entity.User;
-import com.friendfinder.friendfinderweb.security.CurrentUser;
-import com.friendfinder.friendfinderweb.service.UserService;
+import com.friendfinder.friendfindercommon.dto.userDto.UserRegisterRequestDto;
+import com.friendfinder.friendfindercommon.entity.Country;
+import com.friendfinder.friendfindercommon.entity.User;
+import com.friendfinder.friendfindercommon.security.CurrentUser;
+import com.friendfinder.friendfindercommon.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

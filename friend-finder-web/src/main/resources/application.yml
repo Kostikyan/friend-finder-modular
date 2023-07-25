@@ -8,6 +8,7 @@ spring:
   liquibase:
     change-log: classpath:/liquibase/changelog.xml
 
+
   servlet:
     multipart:
       max-file-size: 50MB
@@ -23,6 +24,7 @@ spring:
           auth: true
           starttls:
             enable: true
+
 
 
 #Post path
