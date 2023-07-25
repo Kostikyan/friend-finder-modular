@@ -1,0 +1,56 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/friend_finder?useUnicode=true
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+  liquibase:
+    change-log: classpath:/liquibase/changelog.xml
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 200MB
+  mail:
+    host: smtp.gmail.com
+    username: finderfriend2023@gmail.com
+    password: dlvwnndbnoxemfwr
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+#Post path
+post:
+  upload:
+    image:
+      path: D:/java2023/friend-finder/images/posts/user-images/
+
+  video:
+    upload:
+      image:
+        path: D:/java2023/friend-finder/images/posts/videos/
+
+
+#User profile
+user:
+  profile:
+    picture:
+      path: D:/java2023/friend-finder/images/posts/postImages/
+    background-picture:
+      path: D:/java2023/friend-finder/images/posts/user-background/
+
+site:
+  url: http://localhost:8080
+
+server:
+  error:
+    path: /error
+
+    whitelabel:
+      enabled: false
