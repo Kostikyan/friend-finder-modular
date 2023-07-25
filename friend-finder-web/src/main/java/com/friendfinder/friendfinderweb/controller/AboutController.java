@@ -1,9 +1,9 @@
 package com.friendfinder.friendfinderweb.controller;
 
-import com.friendfinder.friendfinderweb.entity.*;
-import com.friendfinder.friendfinderweb.entity.types.FriendStatus;
-import com.friendfinder.friendfinderweb.security.CurrentUser;
-import com.friendfinder.friendfinderweb.service.*;
+import com.friendfinder.friendfindercommon.entity.*;
+import com.friendfinder.friendfindercommon.entity.types.FriendStatus;
+import com.friendfinder.friendfindercommon.security.CurrentUser;
+import com.friendfinder.friendfindercommon.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;

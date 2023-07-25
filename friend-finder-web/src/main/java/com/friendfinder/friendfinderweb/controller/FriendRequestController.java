@@ -1,9 +1,9 @@
 package com.friendfinder.friendfinderweb.controller;
 
-import com.friendfinder.friendfinderweb.entity.FriendRequest;
-import com.friendfinder.friendfinderweb.entity.User;
-import com.friendfinder.friendfinderweb.entity.types.FriendStatus;
-import com.friendfinder.friendfinderweb.service.FriendRequestService;
+import com.friendfinder.friendfindercommon.entity.FriendRequest;
+import com.friendfinder.friendfindercommon.entity.User;
+import com.friendfinder.friendfindercommon.entity.types.FriendStatus;
+import com.friendfinder.friendfindercommon.service.FriendRequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
