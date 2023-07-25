@@ -3,13 +3,19 @@ package com.friendfinder.friendfindercommon.entity;
 import com.friendfinder.friendfindercommon.entity.types.UserGender;
 import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "user")
 public class User {
     @Id

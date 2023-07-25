@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 @EnableAsync
-@ComponentScan(basePackages = {"com.friendfinder.friendfinderweb","com.friendfinder.friendfindercommon"})
+@ComponentScan(basePackages = {"com.friendfinder.friendfinderweb", "com.friendfinder.friendfindercommon"})
 @EntityScan(basePackages = "com.friendfinder.friendfindercommon.entity")
 @EnableJpaRepositories(basePackages = "com.friendfinder.friendfindercommon.repository")
 public class FriendFinderWebApplication {
@@ -21,7 +21,7 @@ public class FriendFinderWebApplication {
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

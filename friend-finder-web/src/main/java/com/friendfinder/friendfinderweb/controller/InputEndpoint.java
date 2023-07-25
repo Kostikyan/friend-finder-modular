@@ -2,7 +2,6 @@ package com.friendfinder.friendfinderweb.controller;
 
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.MainService;
-import com.friendfinder.friendfindercommon.service.impl.MainServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
