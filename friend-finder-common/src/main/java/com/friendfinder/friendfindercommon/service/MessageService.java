@@ -1,7 +1,8 @@
 package com.friendfinder.friendfindercommon.service;
 
-import com.friendfinder.friendfindercommon.entity.Message;
+import com.friendfinder.friendfindercommon.dto.chat.SendMessageDto;
+import com.friendfinder.friendfindercommon.entity.User;
 
 public interface MessageService {
-    void save(Message chat);
+    boolean save(SendMessageDto sendMessageDto, User currentUser);
 }
