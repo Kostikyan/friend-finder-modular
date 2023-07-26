@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class SentMessageResponseDto {
-    int senderId;
-    int receiverId;
-    String content;
+    private int senderId;
+    private int receiverId;
+    private String content;
 }

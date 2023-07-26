@@ -1,7 +1,5 @@
 package com.friendfinder.friendfindercommon.dto.commentDto;
 
-import com.friendfinder.friendfindercommon.entity.Post;
-import com.friendfinder.friendfindercommon.entity.User;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -11,10 +9,9 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentRequestDto {
-
-    private User user;
-    private Post post;
+public class GetCommentRequestDto {
+    private int userId;
+    private int postId;
     private LocalDateTime datetime;
     private String commentaryText;
 }
