@@ -43,4 +43,9 @@ public class MessageServiceImpl implements MessageService {
                 .build());
         return true;
     }
+
+    @Override
+    public void save(Message message) {
+        messageRepository.save(message);
+    }
 }
