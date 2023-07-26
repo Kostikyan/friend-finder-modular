@@ -17,7 +17,7 @@ public interface UserService {
 
     List<User> userForAddFriend(CurrentUser currentUser);
 
-    void userRegister(UserRegisterRequestDto dto);
+    User userRegister(UserRegisterRequestDto dto);
 
     void updateUserPasswordById(String password, int id);
 

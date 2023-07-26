@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void userRegister(UserRegisterRequestDto dto) {
+    public User userRegister(UserRegisterRequestDto dto) {
         User user = userRegisterMapper.map(dto);
 
         Optional<User> userFromDB = userRepository.findByEmail(user.getEmail());
@@ -73,8 +73,10 @@ public class UserServiceImpl implements UserService {
                     "Hi " + user.getName() + "!\nPlease verify your email by clicking on this URL:\n " +
                             siteUrl + "/verify?email=" + user.getEmail() + "&token=" + uuid
             );
-            userRepository.save(user);
+            return userRepository.save(user);
         }
+
+        return null;
     }
 
     @Override

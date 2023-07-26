@@ -45,31 +45,7 @@ public class ChatController {
 
     @GetMapping("/chat/create/{id}")
     public String createNewChat(@PathVariable("id") int userId, @AuthenticationPrincipal CurrentUser currentUser){
-        if(userId == currentUser.getUser().getId()){
-            return "redirect:/newsfeed/messages";
-        }
-
-        Optional<User> userById = userService.findUserById(userId);
-        if (userById.isEmpty()) {
-            return "redirect:/newsfeed/messages";
-        }
-
-        Optional<Chat> byCurrentUserIdAndAnotherUserId = chatService.findByCurrentUserIdAndAnotherUserId(currentUser.getUser().getId(), userId);
-        if (byCurrentUserIdAndAnotherUserId.isPresent()) {
-            return "redirect:/newsfeed/messages";
-        }
-
-        Optional<Chat> byAnotherUserIdAndCurrentUserID = chatService.findByCurrentUserIdAndAnotherUserId(userId, currentUser.getUser().getId());
-        if(byAnotherUserIdAndCurrentUserID.isPresent()) {
-            return "redirect:/newsfeed/messages";
-        }
-
-        Chat newChat = Chat.builder()
-                .anotherUser(userById.get())
-                .currentUser(currentUser.getUser())
-                .build();
-
-        chatService.save(newChat);
+        chatService.create(userId, currentUser.getUser());
         return "redirect:/newsfeed/messages";
     }
 
