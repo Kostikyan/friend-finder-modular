@@ -30,7 +30,6 @@ public class UserEndpoint {
     private final JwtTokenUtil tokenUtil;
     private final UserRegisterMapper userMapper;
 
-
     @PostMapping("/login")
     public ResponseEntity<UserAuthResponseDto> auth(@RequestBody UserLoginRequestDto loginRequestDto) {
         Optional<User> byEmail = userService.findByEmail(loginRequestDto.getEmail());
@@ -48,13 +47,7 @@ public class UserEndpoint {
 
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody UserRegisterRequestDto registerRequestDto) {
-        Optional<User> byEmail = userService.findByEmail(registerRequestDto.getEmail());
-        if (byEmail.isPresent()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
-        User user = userMapper.map(registerRequestDto);
-        userService.save(user);
-
+        User user = userService.userRegister(registerRequestDto);
         return ResponseEntity.ok(userMapper.mapToUserDto(user));
     }
 }

@@ -37,7 +37,7 @@ public class SpringSecurityConfig {
                         .requestMatchers("/user/register").permitAll()
                         .requestMatchers("/user/login").permitAll()
                         .requestMatchers(HttpMethod.GET,"/posts/images/page/**").permitAll()
-                        .anyRequest().hasAnyAuthority("ADMIN", "USER")
+                        .anyRequest().authenticated()
                 );
 
         httpSecurity.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
