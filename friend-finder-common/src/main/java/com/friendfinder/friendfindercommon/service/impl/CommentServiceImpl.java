@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,19 +29,24 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void addComment(CommentRequestDto comment, CurrentUser currentUser, Post post) {
+    public Comment addComment(CommentRequestDto comment, CurrentUser currentUser, Post post) {
         Comment commentSave = commentMapper.map(CommentRequestDto.builder()
                 .user(currentUser.getUser())
                 .post(post)
                 .commentaryText(comment.getCommentaryText())
                 .datetime(LocalDateTime.now())
                 .build());
-        commentRepository.save(commentSave);
         userActivityService.save(currentUser.getUser(),"commented on a post");
+        return commentRepository.save(commentSave);
     }
 
     @Override
-    public void deleteComment(int id) {
-        commentRepository.deleteById(id);
+    public Comment deleteComment(int id) {
+        Optional<Comment> byId = commentRepository.findById(id);
+        if (byId.isPresent()){
+            Comment comment = byId.get();
+            commentRepository.deleteById(comment.getId());
+        }
+        return null;
     }
 }

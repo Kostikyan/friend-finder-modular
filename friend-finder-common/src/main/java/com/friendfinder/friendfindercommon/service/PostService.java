@@ -16,7 +16,7 @@ public interface PostService {
 
     Page<Post> postPageByUserId(int userId, int pageNumber);
 
-    void postSave(PostRequestDto post, CurrentUser currentUser, MultipartFile image, MultipartFile video);
+    Post postSave(PostRequestDto post, CurrentUser currentUser, MultipartFile image, MultipartFile video);
 
     List<Post> postUserById(int id);
 

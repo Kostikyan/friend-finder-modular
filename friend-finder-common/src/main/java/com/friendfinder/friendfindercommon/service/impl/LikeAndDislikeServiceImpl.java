@@ -26,7 +26,7 @@ public class LikeAndDislikeServiceImpl implements LikeAndDislikeService {
 
     @Override
     @Transactional
-    public void saveReaction(PostLikeDto postLikeDto, CurrentUser currentUser, Post post) {
+    public PostLike saveReaction(PostLikeDto postLikeDto, CurrentUser currentUser, Post post) {
         Optional<PostLike> byUserIdAndPostId = postLikeRepository.findByUserIdAndPostId(currentUser.getUser().getId(), post.getId());
         if (byUserIdAndPostId.isEmpty()) {
             postLikeDto.setUser(currentUser.getUser());
@@ -39,7 +39,7 @@ public class LikeAndDislikeServiceImpl implements LikeAndDislikeService {
                 postRepository.save(post);
             }
             PostLike postLike = postLikeMapper.map(postLikeDto);
-            postLikeRepository.save(postLike);
+            return postLikeRepository.save(postLike);
         } else {
             PostLike postLikeDelete = byUserIdAndPostId.get();
             postLikeRepository.delete(postLikeDelete);
@@ -51,6 +51,7 @@ public class LikeAndDislikeServiceImpl implements LikeAndDislikeService {
                 postRepository.save(post);
             }
         }
+        return null;
     }
 }
 
