@@ -1,4 +1,4 @@
-package com.friendfinder.friendfindercommon.dto.chat;
+package com.friendfinder.friendfindercommon.dto.chatDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

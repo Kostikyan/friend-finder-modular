@@ -15,9 +15,9 @@ public class EducationServiceImpl implements EducationService {
     private final EducationRepository educationRepository;
 
     @Override
-    public void saveEducation(Education education, CurrentUser currentUser) {
+    public Education saveEducation(Education education, CurrentUser currentUser) {
         User user = currentUser.getUser();
         education.setUser(user);
-        educationRepository.save(education);
+        return educationRepository.save(education);
     }
 }

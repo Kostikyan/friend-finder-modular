@@ -8,9 +8,9 @@ import com.friendfinder.friendfindercommon.security.CurrentUser;
 import java.util.List;
 
 public interface CommentService {
-    void addComment(CommentRequestDto comment, CurrentUser currentUser, Post post);
+    Comment addComment(CommentRequestDto comment, CurrentUser currentUser, Post post);
 
-    void deleteComment(int id);
+    Comment deleteComment(int id);
 
     List<Comment> commentList();
 }

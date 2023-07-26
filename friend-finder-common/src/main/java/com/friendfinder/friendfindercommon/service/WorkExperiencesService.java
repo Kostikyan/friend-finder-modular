@@ -8,5 +8,5 @@ import java.util.List;
 public interface WorkExperiencesService {
     List<WorkExperiences> findAllByUserId(int userId);
 
-    void saveWorkExperiences(WorkExperiences workExperiences, CurrentUser currentUser);
+    WorkExperiences saveWorkExperiences(WorkExperiences workExperiences, CurrentUser currentUser);
 }

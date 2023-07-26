@@ -1,4 +1,4 @@
-package com.friendfinder.friendfindercommon.dto.contact;
+package com.friendfinder.friendfindercommon.dto.contactDto;
 
 import lombok.*;
 

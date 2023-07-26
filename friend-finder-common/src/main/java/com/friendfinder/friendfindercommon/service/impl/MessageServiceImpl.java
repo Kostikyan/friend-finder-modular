@@ -1,6 +1,6 @@
 package com.friendfinder.friendfindercommon.service.impl;
 
-import com.friendfinder.friendfindercommon.dto.chat.SendMessageDto;
+import com.friendfinder.friendfindercommon.dto.chatDto.SendMessageDto;
 import com.friendfinder.friendfindercommon.entity.Chat;
 import com.friendfinder.friendfindercommon.entity.Message;
 import com.friendfinder.friendfindercommon.entity.User;
@@ -9,7 +9,6 @@ import com.friendfinder.friendfindercommon.service.MessageService;
 import com.friendfinder.friendfindercommon.repository.MessageRepository;
 import com.friendfinder.friendfindercommon.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
