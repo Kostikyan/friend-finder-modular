@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ChatDto {
-    int currentUserId;
-    int anotherUserId;
+    private int currentUserId;
+    private int anotherUserId;
 }
