@@ -3,7 +3,6 @@ package com.friendfinder.friendfinderrest.endpoint;
 import com.friendfinder.friendfindercommon.dto.commentDto.CommentRequestDto;
 import com.friendfinder.friendfindercommon.dto.postDto.PostResponseDto;
 import com.friendfinder.friendfindercommon.dto.userDto.UserDto;
-import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.mapper.CommentMapper;
 import com.friendfinder.friendfindercommon.mapper.PostMapper;
 import com.friendfinder.friendfindercommon.mapper.UserMapper;
@@ -17,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/admin")
@@ -32,23 +30,23 @@ public class AdminEndpoint {
     private final CommentMapper commentMapper;
 
     @GetMapping("/users")
-    public ResponseEntity<List<UserDto>> getAllUsers(){
+    public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(userMapper.mapToDtos(userService.userFindAll()));
     }
 
     @GetMapping("/posts")
-    public ResponseEntity<List<PostResponseDto>> getAllPosts(){
+    public ResponseEntity<List<PostResponseDto>> getAllPosts() {
         return ResponseEntity.ok(postMapper.mapResp(postService.findAll()));
     }
 
     @GetMapping("/comments")
-    public ResponseEntity<List<CommentRequestDto>> getAllComments(){
+    public ResponseEntity<List<CommentRequestDto>> getAllComments() {
         return ResponseEntity.ok(commentMapper.mapToDtos(commentService.commentList()));
     }
 
     @DeleteMapping("/users/delete/{id}")
     @Transactional
-    public ResponseEntity<String> deleteUserById(@PathVariable("id") int id){
+    public ResponseEntity<String> deleteUserById(@PathVariable("id") int id) {
         userService.deleteUserById(id);
         String body = "user with id {" + id + "} successfully deleted";
         return new ResponseEntity<>(body, HttpStatus.OK);
@@ -56,7 +54,7 @@ public class AdminEndpoint {
 
     @DeleteMapping("/posts/delete/{id}")
     @Transactional
-    public ResponseEntity<String> deletePostById(@PathVariable("id") int id){
+    public ResponseEntity<String> deletePostById(@PathVariable("id") int id) {
         postService.deletePostId(id);
         String body = "post with id {" + id + "} successfully deleted";
         return new ResponseEntity<>(body, HttpStatus.OK);
@@ -64,7 +62,7 @@ public class AdminEndpoint {
 
     @DeleteMapping("/comments/delete/{id}")
     @Transactional
-    public ResponseEntity<String> deleteCommentById(@PathVariable("id") int id){
+    public ResponseEntity<String> deleteCommentById(@PathVariable("id") int id) {
         commentService.deleteComment(id);
         String body = "comment with id {" + id + "} successfully deleted";
         return new ResponseEntity<>(body, HttpStatus.OK);
@@ -72,13 +70,10 @@ public class AdminEndpoint {
 
     @PutMapping("/users/block/{id}")
     @Transactional
-    public ResponseEntity<String> blockUserById(@PathVariable("id") int id){
-        Optional<User> userById = userService.findUserById(id);
-        if (userById.isEmpty()) {
+    public ResponseEntity<String> blockUserById(@PathVariable("id") int id) {
+        boolean block = userService.blockUserById(id);
+        if (!block)
             return new ResponseEntity<>("wrong user id", HttpStatus.NOT_FOUND);
-        }
-
-        userService.blockUserById(id);
 
         String body = "user with id {" + id + "} successfully blocked";
         return new ResponseEntity<>(body, HttpStatus.OK);
@@ -86,13 +81,11 @@ public class AdminEndpoint {
 
     @PutMapping("/users/unblock/{id}")
     @Transactional
-    public ResponseEntity<String> unblockUserById(@PathVariable("id") int id){
-        Optional<User> userById = userService.findUserById(id);
-        if (userById.isEmpty()) {
+    public ResponseEntity<String> unblockUserById(@PathVariable("id") int id) {
+        boolean unblock = userService.unblockUserById(id);
+        if (!unblock)
             return new ResponseEntity<>("wrong user id", HttpStatus.NOT_FOUND);
-        }
 
-        userService.unblockUserById(id);
         String body = "user with id {" + id + "} successfully unblocked";
         return new ResponseEntity<>(body, HttpStatus.OK);
     }

@@ -32,6 +32,6 @@ public interface UserService {
     Page<User> findAll(Pageable pageable);
 
     void deleteUserById(int id);
-    void blockUserById(int id);
-    void unblockUserById(int id);
+    boolean blockUserById(int id);
+    boolean unblockUserById(int id);
 }

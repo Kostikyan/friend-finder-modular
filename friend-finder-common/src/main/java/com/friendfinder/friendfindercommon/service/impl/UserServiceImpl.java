@@ -123,22 +123,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void blockUserById(int id) {
+    public boolean blockUserById(int id) {
         Optional<User> userById = userRepository.findById(id);
-        if (userById.isEmpty()) return;
+        if (userById.isEmpty()) return false;
 
         User user = userById.get();
         user.setRole(UserRole.BLOCKED);
         userRepository.save(user);
+        return true;
     }
 
     @Override
-    public void unblockUserById(int id) {
+    public boolean unblockUserById(int id) {
         Optional<User> userById = userRepository.findById(id);
-        if (userById.isPresent()) {
-            User user = userById.get();
-            user.setRole(UserRole.USER);
-            userRepository.save(user);
-        }
+        if (userById.isEmpty()) return false;
+
+        User user = userById.get();
+        user.setRole(UserRole.USER);
+        userRepository.save(user);
+        return true;
     }
 }
