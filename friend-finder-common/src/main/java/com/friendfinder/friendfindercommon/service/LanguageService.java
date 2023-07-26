@@ -7,5 +7,5 @@ import java.util.List;
 public interface LanguageService {
     List<Language> findAllByUserId(int userId);
 
-    void save(Language lang);
+    Language save(Language lang);
 }
