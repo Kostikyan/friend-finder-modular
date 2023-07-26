@@ -94,7 +94,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void postSave(PostRequestDto requestDto, CurrentUser currentUser, MultipartFile image, MultipartFile video) {
+    public Post postSave(PostRequestDto requestDto, CurrentUser currentUser, MultipartFile image, MultipartFile video) {
         String imgName = ImageUtil.uploadImage(image, postImageUploadPath);
         String musicFileName = ImageUtil.uploadImage(video, postVideoUploadPath);
         Post post = postMapper.map(PostRequestDto.builder()
@@ -104,12 +104,12 @@ public class PostServiceImpl implements PostService {
                 .description(requestDto.getDescription())
                 .user(currentUser.getUser())
                 .build());
-        postRepository.save(post);
         if (imgName != null) {
             userActivityService.save(currentUser.getUser(), "posted a photo");
         } else {
             userActivityService.save(currentUser.getUser(), "posted a video");
         }
+        return postRepository.save(post);
     }
 
     private List<PostResponseDto> getAllPostFriends(CurrentUser currentUser) {
