@@ -1,4 +1,4 @@
-package com.friendfinder.friendfindercommon.dto.chat;
+package com.friendfinder.friendfindercommon.dto.chatDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SendMessageDto {
-    private int chatId;
-    private int receiverId;
-    private String content;
+public class ChatDto {
+    private int currentUserId;
+    private int anotherUserId;
 }

@@ -1,6 +1,6 @@
 package com.friendfinder.friendfinderrest.endpoint;
 
-import com.friendfinder.friendfindercommon.dto.contact.ContactFormRequestDto;
+import com.friendfinder.friendfindercommon.dto.contactDto.ContactFormRequestDto;
 import com.friendfinder.friendfindercommon.service.impl.MailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

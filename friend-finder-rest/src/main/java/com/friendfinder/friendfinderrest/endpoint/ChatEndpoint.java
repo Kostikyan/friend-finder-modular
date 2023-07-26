@@ -1,11 +1,11 @@
 package com.friendfinder.friendfinderrest.endpoint;
 
-import com.friendfinder.friendfindercommon.dto.chat.SendMessageDto;
-import com.friendfinder.friendfindercommon.dto.chat.SentMessageResponseDto;
+import com.friendfinder.friendfindercommon.dto.chatDto.SendMessageDto;
+import com.friendfinder.friendfindercommon.dto.chatDto.SentMessageResponseDto;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.ChatService;
 import com.friendfinder.friendfindercommon.service.MessageService;
-import com.friendfinder.friendfindercommon.dto.chat.ChatDto;
+import com.friendfinder.friendfindercommon.dto.chatDto.ChatDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

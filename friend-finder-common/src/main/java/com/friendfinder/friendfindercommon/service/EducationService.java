@@ -5,6 +5,6 @@ import com.friendfinder.friendfindercommon.security.CurrentUser;
 
 public interface EducationService {
 
-    void saveEducation(Education education, CurrentUser currentUser);
+    Education saveEducation(Education education, CurrentUser currentUser);
 
 }
