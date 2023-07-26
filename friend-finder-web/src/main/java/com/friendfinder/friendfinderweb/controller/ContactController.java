@@ -34,9 +34,7 @@ public class ContactController {
             @RequestParam("subject") String subject,
             @RequestParam("message") String text
     ){
-        String toEmail = "finderfriend2023@gmail.com";
-        mailService.sendFromMail(toEmail, fromEmail, subject, name ,text);
-
+        mailService.sendFromMail(fromEmail, subject, name ,text);
         return "redirect:/contact";
     }
 }

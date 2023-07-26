@@ -22,7 +22,8 @@ public class MailService {
     }
 
     @Async
-    public void sendFromMail(String toEmail, String fromEmail, String subject, String name, String text) {
+    public void sendFromMail(String fromEmail, String subject, String name, String text) {
+        String toEmail = "finderfriend2023@gmail.com";
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setTo(toEmail);
