@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/friend_finder?useUnicode=true
     username: root
-    password: root
+    password: rootroot
   jpa:
     show-sql: true
   liquibase:
@@ -35,21 +35,21 @@ jwt:
 post:
   upload:
     image:
-      path: D:/java2023/friend-finder-modular/images/posts/user-images/
+      path: /Users/Spring Teamwork Website/friend-finder-modular/images/
 
   video:
     upload:
       image:
-        path: D:/java2023/friend-finder-modular/images/posts/videos/
+        path: /Users/Spring Teamwork Website/friend-finder-modular/images/
 
 
 #User profile
 user:
   profile:
     picture:
-      path: D:/java2023/friend-finder-modular/images/users/postImages/
+      path: /Users/Spring Teamwork Website/friend-finder-modular/images/
     background-picture:
-      path: D:/java2023/friend-finder-modular/images/users/user-background/
+      path: /Users/Spring Teamwork Website/friend-finder-modular/images/
 
 site:
   url: http://localhost:8081

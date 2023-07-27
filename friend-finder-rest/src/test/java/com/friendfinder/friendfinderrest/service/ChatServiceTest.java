@@ -66,7 +66,11 @@ class ChatServiceTest {
         int currentUserId = 1;
 
         List<Chat> expectedChats = new ArrayList<>();
+        expectedChats.add(new Chat());
+        expectedChats.add(new Chat());
+        expectedChats.add(new Chat());
 
+        when(chatService.findAllByCurrentUserId(currentUserId)).thenReturn(expectedChats);
         List<Chat> resultChats = chatService.findAllByCurrentUserId(currentUserId);
 
         assertEquals(expectedChats, resultChats);
@@ -76,7 +80,11 @@ class ChatServiceTest {
     void testFindAllByAnotherUserId() {
         int anotherUserId = 3;
         List<Chat> expectedChats = new ArrayList<>();
+        expectedChats.add(new Chat());
+        expectedChats.add(new Chat());
+        expectedChats.add(new Chat());
 
+        when(chatService.findAllByAnotherUserId(anotherUserId)).thenReturn(expectedChats);
         List<Chat> resultChats = chatService.findAllByAnotherUserId(anotherUserId);
 
         assertEquals(expectedChats, resultChats);
@@ -86,9 +94,9 @@ class ChatServiceTest {
     void testFindByCurrentUserIdAndAnotherUserId() {
         int firstId = 12;
         int secondId = 3;
+
         Chat expectedChat = new Chat();
         when(chatRepository.findByCurrentUserIdAndAnotherUserId(firstId, secondId)).thenReturn(Optional.of(expectedChat));
-
         Optional<Chat> resultChat = chatService.findByCurrentUserIdAndAnotherUserId(firstId, secondId);
 
         assertTrue(resultChat.isPresent());
@@ -99,8 +107,8 @@ class ChatServiceTest {
     void testFindById() {
         int chatId = 1;
         Chat expectedChat = new Chat();
-        when(chatRepository.findById(chatId)).thenReturn(Optional.of(expectedChat));
 
+        when(chatRepository.findById(chatId)).thenReturn(Optional.of(expectedChat));
         Optional<Chat> resultChat = chatRepository.findById(chatId);
 
         assertTrue(resultChat.isPresent());
