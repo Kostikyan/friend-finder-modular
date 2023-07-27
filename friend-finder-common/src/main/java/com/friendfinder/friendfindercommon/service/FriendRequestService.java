@@ -11,7 +11,7 @@ public interface FriendRequestService {
 
     Page<User> userFriendsPageByUserId(int userId, int pageNumber);
 
-    void save(FriendRequest friendRequest);
+    FriendRequest save(FriendRequest friendRequest);
 
     List<User> findSenderByReceiverId(int receiverId);
 
