@@ -35,7 +35,11 @@ class InterestsServiceImplTest {
     @Test
     void testFindAllByUserId() {
         int userId = 1;
+
         List<Interest> expectedInterests = new ArrayList<>();
+        expectedInterests.add(new Interest());
+        expectedInterests.add(new Interest());
+        expectedInterests.add(new Interest());
 
         when(interestsRepository.findAllByUserId(userId)).thenReturn(expectedInterests);
         List<Interest> resultInterests = interestsService.findAllByUserId(userId);

@@ -31,21 +31,21 @@ spring:
 post:
   upload:
     image:
-      path: D:/java2023/friend-finder/images/posts/user-images/
+      path: /Users/Spring Teamwork Website/friend-finder-modular/images/
 
   video:
     upload:
       image:
-        path: D:/java2023/friend-finder/images/posts/videos/
+        path: /Users/Spring Teamwork Website/friend-finder-modular/images/
 
 
 #User profile
 user:
   profile:
     picture:
-      path: D:/java2023/friend-finder/images/posts/postImages/
+      path: /Users/Spring Teamwork Website/friend-finder-modular/images/
     background-picture:
-      path: D:/java2023/friend-finder/images/posts/user-background/
+      path: /Users/Spring Teamwork Website/friend-finder-modular/images/
 
 site:
   url: http://localhost:8080
