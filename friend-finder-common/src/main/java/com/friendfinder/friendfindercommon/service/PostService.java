@@ -20,7 +20,7 @@ public interface PostService {
 
     List<Post> postUserById(int id);
 
-    void deletePostId(int id);
+    Post deletePostId(int id);
 
     List<Post> findAll();
 }
