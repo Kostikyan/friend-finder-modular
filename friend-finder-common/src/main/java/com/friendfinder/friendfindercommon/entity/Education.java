@@ -1,11 +1,17 @@
 package com.friendfinder.friendfindercommon.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "education")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
