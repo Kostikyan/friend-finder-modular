@@ -1,5 +1,6 @@
 package com.friendfinder.friendfindercommon.service.impl;
 
+import com.friendfinder.friendfindercommon.dto.userDto.UserUpdateRequestDto;
 import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.UserImage;
@@ -37,7 +38,7 @@ public class TimelineServiceImpl implements TimelineService {
 
 
     @Override
-    public void updateUser(User user, CurrentUser currentUser) {
+    public User updateUser(UserUpdateRequestDto user, CurrentUser currentUser) {
         User loggedInUser = currentUser.getUser();
         loggedInUser.setName(user.getName());
         loggedInUser.setSurname(user.getSurname());
@@ -47,21 +48,21 @@ public class TimelineServiceImpl implements TimelineService {
         loggedInUser.setCity(user.getCity());
         loggedInUser.setCountry(user.getCountry());
         loggedInUser.setPersonalInformation(user.getPersonalInformation());
-        userRepository.save(loggedInUser);
+        return userRepository.save(loggedInUser);
     }
 
     @Override
-    public void updateUserProfilePic(MultipartFile profilePic, CurrentUser currentUser, UserImage userImage) {
+    public User updateUserProfilePic(MultipartFile profilePic, CurrentUser currentUser, UserImage userImage) {
         User user = currentUser.getUser();
         user.setProfilePicture(ImageUtil.uploadImage(profilePic, userProfilePicPath));
-        userRepository.save(user);
         userImageService.userImageSave(userImage, currentUser);
+        return userRepository.save(user);
     }
 
     @Override
-    public void updateUserProfileBackgroundPic(MultipartFile bgPic, CurrentUser currentUser) {
+    public User updateUserProfileBackgroundPic(MultipartFile bgPic, CurrentUser currentUser) {
         User user = currentUser.getUser();
         user.setProfileBackgroundPic(ImageUtil.uploadImage(bgPic, userBgProfilePicPath));
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 }
