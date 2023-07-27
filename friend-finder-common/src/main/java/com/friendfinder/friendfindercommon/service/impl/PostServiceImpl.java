@@ -144,7 +144,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void deletePostId(int id) {
-        postRepository.deleteById(id);
+    public Post deletePostId(int id) {
+        Optional<Post> byId = postRepository.findById(id);
+        if (byId.isPresent()){
+            Post post = byId.get();
+            postRepository.deleteById(post.getId());
+        }
+        return null;
     }
 }

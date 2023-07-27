@@ -57,7 +57,12 @@ public class UserImageServiceImpl implements UserImageService {
     }
 
     @Override
-    public void deleteUserImageById(int id) {
-        userImageRepository.deleteById(id);
+    public UserImage deleteUserImageById(int id) {
+        Optional<UserImage> byId = userImageRepository.findById(id);
+        if (byId.isPresent()){
+            UserImage userImage = byId.get();
+            userImageRepository.deleteById(userImage.getId());
+        }
+        return null;
     }
 }

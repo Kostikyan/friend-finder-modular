@@ -14,5 +14,5 @@ public interface UserImageService {
 
     void userImageSave(UserImage userImage, CurrentUser currentUser);
 
-    void deleteUserImageById(int id);
+    UserImage deleteUserImageById(int id);
 }
