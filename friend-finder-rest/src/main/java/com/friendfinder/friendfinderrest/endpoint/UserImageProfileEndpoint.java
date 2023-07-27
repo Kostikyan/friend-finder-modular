@@ -6,14 +6,11 @@ import com.friendfinder.friendfindercommon.entity.UserImage;
 import com.friendfinder.friendfindercommon.entity.types.FriendStatus;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.FriendRequestService;
-import com.friendfinder.friendfindercommon.service.UserActivityService;
 import com.friendfinder.friendfindercommon.service.UserImageService;
 import com.friendfinder.friendfindercommon.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
