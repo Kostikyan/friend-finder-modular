@@ -23,6 +23,8 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public boolean save(SendMessageDto sendMessageDto, User currentUser) {
+        if(sendMessageDto == null || currentUser == null) return false;
+
         Optional<User> userById = userService.findUserById(sendMessageDto.getReceiverId());
         if (userById.isEmpty()) {
             return false;
