@@ -27,14 +27,16 @@ public class FriendRequestServiceImpl implements FriendRequestService {
     private final MailService mailService;
 
     @Override
-    public void save(FriendRequest friendRequest) {
+    public FriendRequest save(FriendRequest friendRequest) {
+        FriendRequest friendRequests = null;
         if (findBySenderIdAndReceiverId(friendRequest.getSender().getId(), friendRequest.getReceiver().getId()) == null
                 && findBySenderIdAndReceiverId(friendRequest.getReceiver().getId(), friendRequest.getSender().getId()) == null) {
-            friendRequestRepository.save(friendRequest);
+             friendRequests = friendRequestRepository.save(friendRequest);
         }
         mailService.sendMail(friendRequest.getReceiver().getEmail(), "You have a new friend request", "Hi, "
                 + friendRequest.getReceiver().getName() + ". You have an friend request from " +
                 friendRequest.getSender().getName() + " " + friendRequest.getSender().getSurname());
+        return friendRequests;
     }
 
     @Override
