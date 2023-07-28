@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class UserImageServiceImpl implements UserImageService {
             User user = byId.get();
             return userImageRepository.findByUserId(user.getId());
         }
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

@@ -16,7 +16,6 @@ import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.FriendRequestService;
 import com.friendfinder.friendfindercommon.service.UserActivityService;
 import com.friendfinder.friendfindercommon.service.impl.PostServiceImpl;
-import com.friendfinder.friendfindercommon.util.ImageUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,9 +40,6 @@ class PostServiceTest {
 
     @Mock
     private PostRepository postRepository;
-
-    @Mock
-    private ImageUtil imageUtil;
 
     @Mock
     private CurrentUser currentUser;
