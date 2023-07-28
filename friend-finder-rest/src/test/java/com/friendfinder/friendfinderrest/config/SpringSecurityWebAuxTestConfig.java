@@ -21,10 +21,10 @@ public class SpringSecurityWebAuxTestConfig {
     @Primary
     public UserDetailsService userDetailsService() {
         Country country = new Country(1, "Afghanistan");
-        User user = new User(1, "user", "user", "user@mail.ru", "user",
+        User user = new User(1, "user", "user", "user@friendfinder.com", "user",
                 new Date(1990, 5, 15), UserGender.MALE, "New York", country,
                 null, null, "Some personal info",
-                true, null, UserRole.USER);
+                true, null, UserRole.ADMIN);
 
         CurrentUser currentUser = new CurrentUser(user);
 
