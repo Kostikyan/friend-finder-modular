@@ -37,7 +37,9 @@ public class FriendRequestEndpoint {
                                            @RequestParam("receiver") User receiver) {
 
         FriendRequest bySenderIdAndReceiverId = friendRequestService.findBySenderIdAndReceiverId(sender.getId(), receiver.getId());
-
+        if(bySenderIdAndReceiverId==null){
+            return ResponseEntity.notFound().build();
+        }
         if (friendRequestService.delete(bySenderIdAndReceiverId)) {
             return ResponseEntity.noContent().build();
         }
