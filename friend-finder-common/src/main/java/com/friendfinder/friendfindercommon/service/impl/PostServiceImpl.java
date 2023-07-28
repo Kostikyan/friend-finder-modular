@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +45,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<Post> postFindPage(int pageNumber, CurrentUser currentUser) {
-        List<PostResponseDto> allPostFriends = getAllPostFriends(currentUser);
+        List<PostResponseDto> allPostFriends = getAllPostFriends(currentUser.getUser().getId());
         List<Integer> friendIds = new ArrayList<>();
         for (PostResponseDto post : allPostFriends) {
             friendIds.add(post.getUser().getId());
@@ -57,7 +58,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<Post> postFindPageVideo(int pageNumber, CurrentUser currentUser) {
-        List<PostResponseDto> allPostFriends = getAllPostFriends(currentUser);
+        List<PostResponseDto> allPostFriends = getAllPostFriends(currentUser.getUser().getId());
         List<String> videos = new ArrayList<>();
         for (PostResponseDto post : allPostFriends) {
             videos.add(post.getMusicFileName());
@@ -70,7 +71,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<Post> postFindPageImage(int pageNumber, CurrentUser currentUser) {
-        List<PostResponseDto> allPostFriends = getAllPostFriends(currentUser);
+        List<PostResponseDto> allPostFriends = getAllPostFriends(currentUser.getUser().getId());
         List<String> images = new ArrayList<>();
         for (PostResponseDto post : allPostFriends) {
             images.add(post.getImgName());
@@ -112,8 +113,9 @@ public class PostServiceImpl implements PostService {
         return postRepository.save(post);
     }
 
-    private List<PostResponseDto> getAllPostFriends(CurrentUser currentUser) {
-        List<User> friendsByUserId = friendRequestService.findFriendsByUserId(currentUser.getUser().getId());
+    @Override
+    public List<PostResponseDto> getAllPostFriends(int userId) {
+        List<User> friendsByUserId = friendRequestService.findFriendsByUserId(userId);
         List<Integer> friendsIds = friendsByUserId
                 .stream()
                 .map(User::getId)
@@ -139,7 +141,7 @@ public class PostServiceImpl implements PostService {
             User user = byId.get();
             return postRepository.findByUserId(user.getId());
         }
-        return null;
+        return Collections.emptyList();
 
     }
 
