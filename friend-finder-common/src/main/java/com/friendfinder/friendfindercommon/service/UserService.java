@@ -34,4 +34,6 @@ public interface UserService {
     void deleteUserById(int id);
     boolean blockUserById(int id);
     boolean unblockUserById(int id);
+
+    boolean changePassword(String oldPass, String newPass, String confPass, User user);
 }

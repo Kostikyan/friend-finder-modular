@@ -17,13 +17,14 @@ public interface FriendRequestService {
 
     FriendRequest findBySenderIdAndReceiverId(int senderId, int receiverId);
 
-    void delete(FriendRequest friendRequest);
+    boolean delete(FriendRequest friendRequest);
+
+    boolean delete(User sender, User receiver);
 
     List<User> findFriendsByUserId(int userId);
 
-    void changeStatus(FriendRequest friendRequest);
+    FriendRequest changeStatus(FriendRequest friendRequest);
 
     int findFriendsByUserIdCount(int id);
 
-    void delete(User sender, User receiver);
 }

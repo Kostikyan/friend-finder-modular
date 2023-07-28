@@ -143,4 +143,17 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return true;
     }
+
+    @Override
+    public boolean changePassword(String oldPass, String newPass, String confPass, User user) {
+        if (passwordEncoder.matches(oldPass, user.getPassword())) {
+            if (newPass.equals(confPass)) {
+                String encodedPass = passwordEncoder.encode(newPass);
+                user.setPassword(encodedPass);
+                userRepository.updateUserPasswordById(encodedPass, user.getId());
+                return true;
+            }
+        }
+        return false;
+    }
 }

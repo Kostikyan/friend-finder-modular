@@ -26,7 +26,7 @@ public class AboutController {
     private final UserActivityService userActivityService;
 
     @GetMapping("/{userId}")
-    public String workExperiences(@PathVariable("userId") User user, ModelMap modelMap, @AuthenticationPrincipal CurrentUser currentUser) {
+    public String userInfo(@PathVariable("userId") User user, ModelMap modelMap, @AuthenticationPrincipal CurrentUser currentUser) {
         List<WorkExperiences> workExperiencesList = workExperiencesService.findAllByUserId(user.getId());
         List<Interest> interestList = interestsService.findAllByUserId(user.getId());
         List<Language> languageList = languageService.findAllByUserId(user.getId());
@@ -41,16 +41,6 @@ public class AboutController {
         return "timeline-about";
     }
 
-    @GetMapping("/send-request")
-    public String sendRequest(@RequestParam("sender") User sender,
-                              @RequestParam("receiver") User receiver) {
-        friendRequestService.save(FriendRequest.builder()
-                .sender(sender)
-                .receiver(receiver)
-                .status(FriendStatus.PENDING)
-                .build());
-        return "redirect:/users/about/profile/" + receiver.getId();
-    }
 
     @GetMapping("/change-password")
     public String changePasswordPage(@AuthenticationPrincipal CurrentUser currentUser, ModelMap modelMap) {
@@ -62,20 +52,10 @@ public class AboutController {
     public String changePassword(@RequestParam("oldPass") String oldPass,
                                  @RequestParam("newPass") String newPass,
                                  @RequestParam("confPass") String confPass,
-                                 @AuthenticationPrincipal CurrentUser currentUser,
-                                 ModelMap modelMap) {
-        User user = currentUser.getUser();
-        if (passwordEncoder.matches(oldPass, user.getPassword())) {
-            if (newPass.equals(confPass)) {
-                String encodedPass = passwordEncoder.encode(newPass);
-                user.setPassword(encodedPass);
-                userService.updateUserPasswordById(encodedPass, user.getId());
-                return "redirect:/posts";
-            }
-            modelMap.addAttribute("massage", "Password is not confirmed.");
-            return "redirect:/users/about/profile/change-password";
+                                 @AuthenticationPrincipal CurrentUser currentUser) {
+        if (userService.changePassword(oldPass, newPass, confPass, currentUser.getUser())) {
+            return "redirect:/posts";
         }
-        modelMap.addAttribute("massage", "Incorrect password");
         return "redirect:/users/about/profile/change-password";
     }
 }

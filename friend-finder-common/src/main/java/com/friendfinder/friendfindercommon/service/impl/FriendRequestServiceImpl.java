@@ -31,7 +31,7 @@ public class FriendRequestServiceImpl implements FriendRequestService {
         FriendRequest friendRequests = null;
         if (findBySenderIdAndReceiverId(friendRequest.getSender().getId(), friendRequest.getReceiver().getId()) == null
                 && findBySenderIdAndReceiverId(friendRequest.getReceiver().getId(), friendRequest.getSender().getId()) == null) {
-             friendRequests = friendRequestRepository.save(friendRequest);
+            friendRequests = friendRequestRepository.save(friendRequest);
         }
         mailService.sendMail(friendRequest.getReceiver().getEmail(), "You have a new friend request", "Hi, "
                 + friendRequest.getReceiver().getName() + ". You have an friend request from " +
@@ -58,8 +58,13 @@ public class FriendRequestServiceImpl implements FriendRequestService {
     }
 
     @Override
-    public void delete(FriendRequest friendRequest) {
-        friendRequestRepository.delete(friendRequest);
+    public boolean delete(FriendRequest friendRequest) {
+        Optional<FriendRequest> byId = friendRequestRepository.findById(friendRequest.getId());
+        if (byId.isPresent()) {
+            friendRequestRepository.delete(friendRequest);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -90,12 +95,13 @@ public class FriendRequestServiceImpl implements FriendRequestService {
     }
 
     @Override
-    public void changeStatus(FriendRequest friendRequest) {
+    public FriendRequest changeStatus(FriendRequest friendRequest) {
         friendRequest.setStatus(FriendStatus.ACCEPTED);
         mailService.sendMail(friendRequest.getSender().getEmail(), "Your friend request is accepted",
                 "Hi, " + friendRequest.getSender().getName() +
                         ". " + friendRequest.getReceiver().getName() + " accepted your request.");
         friendRequestRepository.save(friendRequest);
+        return friendRequest;
     }
 
     @Override
@@ -105,15 +111,16 @@ public class FriendRequestServiceImpl implements FriendRequestService {
     }
 
     @Override
-    public void delete(User sender, User receiver) {
+    public boolean delete(User sender, User receiver) {
         FriendRequest bySenderIdAndReceiverId = findBySenderIdAndReceiverId(sender.getId(), receiver.getId());
         FriendRequest byReceiverIdAndSenderId = findBySenderIdAndReceiverId(receiver.getId(), sender.getId());
         if (bySenderIdAndReceiverId != null) {
-            delete(bySenderIdAndReceiverId);
+           return delete(bySenderIdAndReceiverId);
         }
         if (byReceiverIdAndSenderId != null) {
-            delete(byReceiverIdAndSenderId);
+           return delete(byReceiverIdAndSenderId);
         }
+        return false;
     }
 
 }
