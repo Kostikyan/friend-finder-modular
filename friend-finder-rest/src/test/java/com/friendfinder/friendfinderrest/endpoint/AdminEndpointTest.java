@@ -44,9 +44,6 @@ class AdminEndpointTest {
     private CommentRepository commentRepository;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private MockMvc mockMvc;
 
     @AfterEach
