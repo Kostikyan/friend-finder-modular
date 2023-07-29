@@ -121,8 +121,8 @@ public class PostEndpoint {
      * @param id The ID of the comment to be removed.
      * @return ResponseEntity containing the deleted Comment object if successful.
      */
-    @DeleteMapping("/comment/delete")
-    public ResponseEntity<Comment>  removeComment(@RequestParam("id") int id) {
+    @DeleteMapping("/comment/delete/{id}")
+    public ResponseEntity<Comment>  removeComment(@PathVariable("id") int id) {
         return ResponseEntity.ok(commentService.deleteComment(id));
     }
 }
