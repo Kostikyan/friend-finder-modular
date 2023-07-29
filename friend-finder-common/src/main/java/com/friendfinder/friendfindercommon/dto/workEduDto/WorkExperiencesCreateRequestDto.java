@@ -7,6 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @Setter
 @Getter
+@Builder
 public class WorkExperiencesCreateRequestDto {
     private String company;
     private String weDesignation;
