@@ -15,6 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * REST API endpoints for handling chat-related operations.
+ *
+ * <p>This class provides endpoints for creating a new chat with another user and sending
+ * messages in the chat.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/chat")
@@ -24,6 +30,13 @@ public class ChatEndpoint {
     private final ChatService chatService;
     private final MessageService messageService;
 
+    /**
+     * Creates a new chat with another user.
+     *
+     * @param userId      The ID of the user to create the chat with.
+     * @param currentUser The authenticated user who initiates the chat.
+     * @return ResponseEntity with the ChatDto containing chat information.
+     */
     @GetMapping("/create/{id}")
     public ResponseEntity<ChatDto> createNewChat(@PathVariable("id") int userId, @AuthenticationPrincipal CurrentUser currentUser) {
         boolean create = chatService.create(userId, currentUser.getUser());
@@ -37,6 +50,13 @@ public class ChatEndpoint {
                 .build());
     }
 
+    /**
+     * Sends a message in the chat.
+     *
+     * @param sendMessageDto The DTO containing the message information to be sent.
+     * @param currentUser    The authenticated user who sends the message.
+     * @return ResponseEntity with the SentMessageResponseDto containing message information.
+     */
     @PostMapping("/send-message")
     public ResponseEntity<SentMessageResponseDto> sendMessage(@RequestBody SendMessageDto sendMessageDto,
                                                               @AuthenticationPrincipal CurrentUser currentUser) {

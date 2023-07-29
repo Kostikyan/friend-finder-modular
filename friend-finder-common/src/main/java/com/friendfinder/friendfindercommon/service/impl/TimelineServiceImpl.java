@@ -17,6 +17,42 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+/**
+ * <p>
+ * TimelineServiceImpl is a service class that provides methods for managing user timeline information in the application.
+ * </p>
+ *
+ * <p>Fields:</p>
+ * <ul>
+ *     <li>countryRepository: The CountryRepository interface used to access and retrieve country-related data from the database.</li>
+ *     <li>userRepository: The UserRepository interface used to access and retrieve user-related data from the database.</li>
+ *     <li>userImageService: The UserImageService interface used to manage user images in the application.</li>
+ *     <li>userProfilePicPath: The file path for storing user profile pictures.</li>
+ *     <li>userBgProfilePicPath: The file path for storing user profile background pictures.</li>
+ * </ul>
+ *
+ * <p>Methods:</p>
+ * <ul>
+ *     <li>findAllCountries(): Retrieves a list of all countries from the database.</li>
+ *     <li>updateUser(user, currentUser): Updates the user's profile information based on the provided UserUpdateRequestDto.
+ *     The method modifies the user's name, surname, email, date of birth, gender, city, country, and personal information.
+ *     The updated user object is then saved to the database.</li>
+ *     <li>updateUserProfilePic(profilePic, currentUser, userImage): Updates the user's profile picture and saves the UserImage object.
+ *     The method uploads the profile picture file using ImageUtil, associates it with the user, and saves the user object along with the UserImage.</li>
+ *     <li>updateUserProfileBackgroundPic(bgPic, currentUser): Updates the user's profile background picture.
+ *     The method uploads the background picture file using ImageUtil and saves the updated user object to the database.</li>
+ * </ul>
+ *
+ * <p>Usage:</p>
+ * <p>
+ * TimelineServiceImpl provides functionality for managing user timeline information in the application. It handles operations
+ * related to updating user profile details such as name, surname, email, date of birth, gender, city, country, and personal information.
+ * The service also allows users to update their profile pictures and background pictures by uploading image files, which are then
+ * saved to the appropriate file paths. The service ensures that user-related data is properly updated and persisted in the database
+ * to reflect the changes on the user's timeline. It collaborates with other services such as UserImageService and ImageUtil to perform
+ * image-related operations efficiently and enhance the user experience in the social media application.
+ * </p>
+ */
 @Service
 @RequiredArgsConstructor
 public class TimelineServiceImpl implements TimelineService {

@@ -14,6 +14,29 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * The JwtTokenUtil class is a utility component responsible for handling JSON Web Tokens (JWT) related operations.
+ * It provides methods to generate, parse, and validate JWT tokens used for user authentication and authorization.
+ *
+ * <p>This class is annotated with @Component, making it a Spring Bean and enabling its automatic detection and
+ * registration within the Spring application context.
+ *
+ * <p>The JwtTokenUtil uses the io.jsonwebtoken library to perform JWT operations. It requires a secret key and an
+ * expiration time for token generation and validation, which are typically provided through configuration properties.
+ *
+ * <p>The JwtTokenUtil has the following functionalities:
+ * - Generating a JWT token for a given email address (subject) and optional claims.
+ * - Parsing a JWT token and extracting the subject and other claims from it.
+ * - Checking if a token has expired.
+ * - Refreshing a token by extending its expiration date.
+ * - Validating a token by checking its subject (email) and expiration date.
+ *
+ * <p>The secret key used for token signing is expected to be Base64-encoded, and it is converted into a cryptographic
+ * Key using the io.jsonwebtoken.security.Keys class.
+ *
+ * <p>This class is a critical component of the JWT-based authentication mechanism, ensuring secure token generation,
+ * validation, and parsing.
+ */
 @Component
 public class JwtTokenUtil {
 

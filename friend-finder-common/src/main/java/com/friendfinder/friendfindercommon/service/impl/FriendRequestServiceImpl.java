@@ -17,6 +17,53 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * <p>
+ * FriendRequestServiceImpl is the implementation of the FriendRequestService interface, providing methods to interact
+ * with the FriendRequestRepository and perform operations related to friend requests between users.
+ * </p>
+ *
+ * <p>Fields:</p>
+ * <ul>
+ *     <li>friendRequestRepository: The FriendRequestRepository interface, allowing this service to interact with the
+ *     database to perform CRUD operations on FriendRequest entities.</li>
+ *     <li>userRepository: The UserRepository interface, providing access to user-related data and operations.</li>
+ *     <li>mailService: An instance of the MailService used to send email notifications related to friend requests.</li>
+ * </ul>
+ *
+ * <p>Methods:</p>
+ * <ul>
+ *     <li>save(friendRequest): Saves a new FriendRequest to the database. It checks if the friend request does not
+ *     already exist (both directions: sender to receiver and receiver to sender) and sends an email notification to
+ *     the receiver upon successful saving.</li>
+ *     <li>findSenderByReceiverId(receiverId): Retrieves a list of users who sent friend requests to the specified
+ *     receiverId. The method filters the list to include only requests with a status of "PENDING".</li>
+ *     <li>findBySenderIdAndReceiverId(senderId, receiverId): Finds a FriendRequest based on the senderId and
+ *     receiverId. If the request is found, it returns the FriendRequest object; otherwise, it returns null.</li>
+ *     <li>delete(friendRequest): Deletes the specified FriendRequest from the database.</li>
+ *     <li>userFriendsPageByUserId(userId, pageNumber): Retrieves a paginated list of user friends based on the
+ *     userId and pageNumber. The method fetches the list of friends by calling findFriendsByUserId(userId) and then
+ *     uses pagination to return a specific page of user friends.</li>
+ *     <li>findFriendsByUserId(userId): Retrieves a list of user friends based on the userId. It searches through all
+ *     FriendRequests and returns users who have an "ACCEPTED" status for friend requests related to the specified
+ *     userId.</li>
+ *     <li>changeStatus(friendRequest): Changes the status of a FriendRequest to "ACCEPTED". It also sends an email
+ *     notification to the sender indicating that their friend request has been accepted.</li>
+ *     <li>findFriendsByUserIdCount(id): Retrieves the count of user friends based on the userId.</li>
+ *     <li>delete(sender, receiver): Deletes a friend request based on the sender and receiver users. It first checks
+ *     if a FriendRequest exists in both directions (sender to receiver and receiver to sender) and then deletes the
+ *     appropriate one.</li>
+ * </ul>
+ *
+ * <p>Usage:</p>
+ * <p>
+ * FriendRequestServiceImpl is used to manage friend request-related operations between users in the application. It is
+ * typically utilized by the application's endpoints or controllers that handle user interactions for friend requests
+ * and user friendship management. When a user sends a friend request or accepts a friend request, this service is
+ * responsible for saving the requests to the database, changing request statuses, and sending email notifications to
+ * the relevant users.
+ * </p>
+ */
 @Service
 @RequiredArgsConstructor
 public class FriendRequestServiceImpl implements FriendRequestService {

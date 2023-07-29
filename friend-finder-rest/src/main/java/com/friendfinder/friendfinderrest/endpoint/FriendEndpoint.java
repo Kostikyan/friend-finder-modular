@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST API endpoint for managing user friends.
+ *
+ * <p>This class provides endpoints for retrieving a user's friends in paginated form and for deleting friends.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/friends")
@@ -21,6 +26,13 @@ public class FriendEndpoint {
 
     private final FriendRequestService friendRequestService;
 
+    /**
+     * Retrieves a list of user's friends by page number.
+     *
+     * @param currentPage   The current page number.
+     * @param currentUser   The currently authenticated user.
+     * @return ResponseEntity with a list of user's friends for the requested page.
+     */
     @GetMapping("/page/{pageNumber}")
     public ResponseEntity<List<User>> listByPage(@PathVariable("pageNumber") int currentPage,
                              @AuthenticationPrincipal CurrentUser currentUser) {
@@ -30,6 +42,13 @@ public class FriendEndpoint {
         return ResponseEntity.ok(content);
     }
 
+    /**
+     * Deletes a friend relationship between two users.
+     *
+     * @param sender    The user who sent the friend request.
+     * @param receiver  The user who received the friend request.
+     * @return ResponseEntity with no content if the friend relationship is successfully deleted, or not found if the friend relationship does not exist.
+     */
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteFromFriends(@RequestParam("sender") User sender,
                                             @RequestParam("receiver") User receiver) {
