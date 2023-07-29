@@ -115,7 +115,7 @@ class PostImageEndpointTest {
 
     @Test
     @WithMockUser(username = "user@friendfinder.com")
-    void deleteCommentById()  {
+    void testDeleteCommentById()  {
 
         Comment comments = createComment();
 

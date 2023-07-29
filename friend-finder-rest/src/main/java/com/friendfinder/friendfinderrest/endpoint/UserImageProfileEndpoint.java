@@ -11,6 +11,7 @@ import com.friendfinder.friendfindercommon.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,13 +37,11 @@ public class UserImageProfileEndpoint {
      *
      * @param user         The User object representing the user whose images to retrieve.
      * @param currentPage  The page number of the images list to retrieve.
-     * @param modelMap     The ModelMap object for storing model attributes.
-     * @param currentUser  The CurrentUser object representing the currently authenticated user.
      * @return ResponseEntity containing a list of UserImage objects representing the user's images.
      */
     @GetMapping("/{userId}/page/{pageNumber}")
-    public ResponseEntity<List<UserImage>> listByPage(@PathVariable("userId") User user, @PathVariable("pageNumber") int currentPage, ModelMap modelMap,
-                                                      @ModelAttribute CurrentUser currentUser) {
+    public ResponseEntity<List<UserImage>> listByPage(@PathVariable("userId") User user,
+                                                      @PathVariable("pageNumber") int currentPage) {
         Page<UserImage> page = userImageService.userImagePageByUserId(user.getId(), currentPage);
         List<UserImage> content = page.getContent();
         return ResponseEntity.ok(content);
@@ -73,8 +72,8 @@ public class UserImageProfileEndpoint {
      * @param id The ID of the user image to be deleted.
      * @return ResponseEntity containing the deleted UserImage object.
      */
-    @GetMapping("/delete/imageId")
-    public ResponseEntity<UserImage> deleteImageById(@RequestParam("imageId") int id) {
+    @GetMapping("/delete/{imageId}")
+    public ResponseEntity<UserImage> deleteImageById(@PathVariable("imageId") int id) {
         return ResponseEntity.ok(userImageService.deleteUserImageById(id));
     }
 }
