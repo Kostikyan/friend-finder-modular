@@ -1,25 +1,23 @@
 package com.friendfinder.friendfinderrest.endpoint;
 
 import com.friendfinder.friendfindercommon.dto.userDto.AboutUserDto;
-import com.friendfinder.friendfindercommon.entity.Interest;
-import com.friendfinder.friendfindercommon.entity.Language;
 import com.friendfinder.friendfindercommon.entity.User;
-import com.friendfinder.friendfindercommon.entity.WorkExperiences;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.InterestsService;
 import com.friendfinder.friendfindercommon.service.LanguageService;
 import com.friendfinder.friendfindercommon.service.UserService;
 import com.friendfinder.friendfindercommon.service.WorkExperiencesService;
+import com.friendfinder.friendfinderrest.exception.ChangePasswordException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/users/about/profile")
 @RequiredArgsConstructor
+@Slf4j
 public class AboutEndpoint {
     private final WorkExperiencesService workExperiencesService;
     private final InterestsService interestsService;
@@ -44,6 +42,7 @@ public class AboutEndpoint {
         if (userService.changePassword(oldPass, newPass, confPass, currentUser.getUser())) {
             return ResponseEntity.ok().build();
         }
+        log.error("wrong data", new ChangePasswordException("wrong data"));
         return ResponseEntity.badRequest().build();
     }
 }

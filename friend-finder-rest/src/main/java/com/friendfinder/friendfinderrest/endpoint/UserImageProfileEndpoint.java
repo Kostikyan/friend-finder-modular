@@ -29,7 +29,7 @@ public class UserImageProfileEndpoint {
 
     @GetMapping("/{userId}/page/{pageNumber}")
     public ResponseEntity<List<UserImage>> listByPage(@PathVariable("userId") User user, @PathVariable("pageNumber") int currentPage, ModelMap modelMap,
-                                                     @ModelAttribute CurrentUser currentUser) {
+                                                      @ModelAttribute CurrentUser currentUser) {
         Page<UserImage> page = userImageService.userImagePageByUserId(user.getId(), currentPage);
         List<UserImage> content = page.getContent();
         return ResponseEntity.ok(content);

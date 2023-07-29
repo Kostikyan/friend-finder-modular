@@ -2,9 +2,7 @@ package com.friendfinder.friendfinderrest.endpoint;
 
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
-import com.friendfinder.friendfindercommon.service.FriendRequestService;
 import com.friendfinder.friendfindercommon.service.SearchService;
-import com.friendfinder.friendfindercommon.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +17,6 @@ import java.util.List;
 public class SearchEndpoint {
 
     private final SearchService searchService;
-    private final UserService userService;
-    private final FriendRequestService friendRequestService;
-
 
     @PostMapping("/{pageNumber}")
     public ResponseEntity<List<User>> listByPageSearch(@RequestParam String keyword,

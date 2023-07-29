@@ -9,7 +9,9 @@ import com.friendfinder.friendfindercommon.mapper.UserMapper;
 import com.friendfinder.friendfindercommon.service.CommentService;
 import com.friendfinder.friendfindercommon.service.PostService;
 import com.friendfinder.friendfindercommon.service.UserService;
+import com.friendfinder.friendfinderrest.exception.WrongUserIdException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
+@Slf4j
 public class AdminEndpoint {
 
     private final UserService userService;
@@ -72,9 +75,10 @@ public class AdminEndpoint {
     @Transactional
     public ResponseEntity<String> blockUserById(@PathVariable("id") int id) {
         boolean block = userService.blockUserById(id);
-        if (!block)
+        if (!block) {
+            log.error("wrong user id class: AdminEndpoint.java, method: blockUserById", new WrongUserIdException("wrong user id"));
             return new ResponseEntity<>("wrong user id", HttpStatus.NOT_FOUND);
-
+        }
         String body = "user with id {" + id + "} successfully blocked";
         return new ResponseEntity<>(body, HttpStatus.OK);
     }
@@ -83,9 +87,10 @@ public class AdminEndpoint {
     @Transactional
     public ResponseEntity<String> unblockUserById(@PathVariable("id") int id) {
         boolean unblock = userService.unblockUserById(id);
-        if (!unblock)
+        if (!unblock) {
+            log.error("wrong user id class: AdminEndpoint.java, method: unblockUserById", new WrongUserIdException("wrong user id"));
             return new ResponseEntity<>("wrong user id", HttpStatus.NOT_FOUND);
-
+        }
         String body = "user with id {" + id + "} successfully unblocked";
         return new ResponseEntity<>(body, HttpStatus.OK);
     }

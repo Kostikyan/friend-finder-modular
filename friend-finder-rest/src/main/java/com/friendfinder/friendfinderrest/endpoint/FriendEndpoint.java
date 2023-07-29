@@ -3,7 +3,9 @@ package com.friendfinder.friendfinderrest.endpoint;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.FriendRequestService;
+import com.friendfinder.friendfinderrest.exception.DeleteFriendNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,6 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/friends")
+@Slf4j
 public class FriendEndpoint {
 
     private final FriendRequestService friendRequestService;
@@ -33,6 +36,7 @@ public class FriendEndpoint {
         if (friendRequestService.delete(sender, receiver)) {
             return ResponseEntity.noContent().build();
         }
+        log.error("friend not found, class: FriendEndpoint, method: deleteFromFriends", new DeleteFriendNotFoundException("friend not found"));
         return ResponseEntity.notFound().build();
     }
 }
