@@ -27,6 +27,50 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * <p>
+ * PostServiceImpl is a service class that provides methods to handle posts in the application.
+ * </p>
+ *
+ * <p>Fields:</p>
+ * <ul>
+ *     <li>postRepository: The PostRepository interface used to access and save post-related data to the database.</li>
+ *     <li>userRepository: The UserRepository interface used to access and retrieve user-related data from the database.</li>
+ *     <li>friendRequestService: The FriendRequestService interface used to manage friend requests and retrieve friends of a user.</li>
+ *     <li>postMapper: The PostMapper interface used for mapping between post-related DTOs and entities.</li>
+ *     <li>userActivityService: The UserActivityService interface used to manage and save user activity data.</li>
+ * </ul>
+ *
+ * <p>Methods:</p>
+ * <ul>
+ *     <li>postFindPage(pageNumber, currentUser): Retrieves a page of posts from friends of the current user.
+ *     It fetches the posts from users who are friends of the current user based on the pageNumber and currentUser information.
+ *     The method returns a Page object containing the post data.</li>
+ *     <li>postFindPageVideo(pageNumber, currentUser): Retrieves a page of video posts from friends of the current user.
+ *     Similar to postFindPage(), this method fetches video posts specifically and returns a Page object containing the post data.</li>
+ *     <li>postFindPageImage(pageNumber, currentUser): Retrieves a page of image posts from friends of the current user.
+ *     Similar to postFindPage(), this method fetches image posts specifically and returns a Page object containing the post data.</li>
+ *     <li>postPageByUserId(userId, pageNumber): Retrieves a page of posts by a specific user.
+ *     It fetches the posts made by the user with the given userId based on the pageNumber and returns a Page object containing the post data.</li>
+ *     <li>postSave(requestDto, currentUser, image, video): Saves a new post to the database based on the information provided in the PostRequestDto object.
+ *     The method validates the input data, uploads images and videos to the server, and then saves the post with the current timestamp and user information.</li>
+ *     <li>getAllPostFriends(userId): Retrieves a list of posts made by friends of the user with the given userId.
+ *     The method fetches the posts made by all friends of the user and returns a list of PostResponseDto objects containing the post data.</li>
+ *     <li>findAll(): Retrieves a list of all posts available in the database and returns it.</li>
+ *     <li>postUserById(id): Retrieves a list of posts made by a user with the given id.
+ *     The method fetches the posts made by the user with the given id and returns a list of Post objects containing the post data.</li>
+ *     <li>deletePostId(id): Deletes a post with the given id from the database if it exists.</li>
+ * </ul>
+ *
+ * <p>Usage:</p>
+ * <p>
+ * PostServiceImpl provides the core functionality for handling posts in the application. It allows users to create and save
+ * new posts with images and videos, retrieve posts from friends, and manage post data in the database. The methods in this
+ * class are extensively used by the application to display posts, save new posts, and manage user interactions with posts.
+ * The implementation is designed to handle post-related data efficiently and provide a seamless user experience for managing
+ * and viewing posts in the social media application.
+ * </p>
+ */
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {

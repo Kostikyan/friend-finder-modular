@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * REST API endpoint for handling user education and work experiences.
+ *
+ * <p>This class provides endpoints for users to add their education and work experiences to their profile.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/profile/work-education")
@@ -29,6 +34,13 @@ public class EducationWorkEndpoint {
     private final EducationMapper educationMapper;
     private final WorkExperiencesMapper workExperiencesMapper;
 
+    /**
+     * Adds education details to the user's profile.
+     *
+     * @param education      The DTO containing the education details.
+     * @param currentUser    The currently authenticated user.
+     * @return ResponseEntity with the response DTO containing the saved education details.
+     */
     @PostMapping("/education/add")
     public ResponseEntity<EducationCreateResponseDto> educationAdd(@RequestBody EducationCreateRequestDto education,
                                                                    @AuthenticationPrincipal CurrentUser currentUser) {
@@ -37,6 +49,13 @@ public class EducationWorkEndpoint {
         return ResponseEntity.ok(educationMapper.mapToResponseDto(saveEducation));
     }
 
+    /**
+     * Adds work experiences details to the user's profile.
+     *
+     * @param workExperiences   The DTO containing the work experiences details.
+     * @param currentUser       The currently authenticated user.
+     * @return ResponseEntity with the response DTO containing the saved work experiences details.
+     */
     @PostMapping("/work/add")
     public ResponseEntity<WorkExperiencesCreateResponseDto> workAdd(@RequestBody WorkExperiencesCreateRequestDto workExperiences,
                                                                     @AuthenticationPrincipal CurrentUser currentUser) {

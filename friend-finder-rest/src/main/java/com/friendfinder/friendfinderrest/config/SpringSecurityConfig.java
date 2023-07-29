@@ -17,6 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * The SpringSecurityConfig class is a Spring configuration class that sets up the security configuration for the application.
+ * It enables web security, configures the security filter chain, and sets up the authentication provider.
+ */
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -28,6 +32,13 @@ public class SpringSecurityConfig {
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JWTAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
+    /**
+     * Configures the security filter chain.
+     *
+     * @param httpSecurity The HttpSecurity object to configure.
+     * @return The configured SecurityFilterChain.
+     * @throws Exception if an error occurs during configuration.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
@@ -50,6 +61,11 @@ public class SpringSecurityConfig {
         return httpSecurity.build();
     }
 
+    /**
+     * Configures the authentication provider.
+     *
+     * @return The configured AuthenticationProvider.
+     */
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();

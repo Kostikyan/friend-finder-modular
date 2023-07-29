@@ -12,12 +12,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * REST API endpoint for managing friend requests between users.
+ *
+ * <p>This class provides endpoints for sending friend requests, accepting friend requests, and rejecting friend requests.
+ */
 @RestController
 @RequiredArgsConstructor
 @Slf4j
 public class FriendRequestEndpoint {
     private final FriendRequestService friendRequestService;
 
+    /**
+     * Sends a friend request from the sender to the receiver.
+     *
+     * @param sender   The user who sends the friend request.
+     * @param receiver The user who receives the friend request.
+     * @return ResponseEntity with the saved friend request entity.
+     */
     @PostMapping("/send-request")
     public ResponseEntity<FriendRequest> sendRequest(@RequestParam("sender") User sender,
                                                      @RequestParam("receiver") User receiver) {
@@ -28,6 +40,13 @@ public class FriendRequestEndpoint {
                 .build()));
     }
 
+    /**
+     * Accepts a friend request from the sender by the receiver.
+     *
+     * @param sender   The user who sent the friend request.
+     * @param receiver The user who received the friend request.
+     * @return ResponseEntity with the updated friend request entity after changing its status to "ACCEPTED".
+     */
     @PostMapping("/access-request")
     public ResponseEntity<FriendRequest> accessRequest(@RequestParam("sender") User sender,
                                                        @RequestParam("receiver") User receiver) {
@@ -35,6 +54,13 @@ public class FriendRequestEndpoint {
         return ResponseEntity.ok(friendRequestService.changeStatus(bySenderIdAndReceiverId));
     }
 
+    /**
+     * Rejects a friend request from the sender by the receiver.
+     *
+     * @param sender   The user who sent the friend request.
+     * @param receiver The user who received the friend request.
+     * @return ResponseEntity with no content if the friend request is successfully rejected, or not found if the friend request does not exist.
+     */
     @PostMapping("/reject-request")
     public ResponseEntity<?> rejectRequest(@RequestParam("sender") User sender,
                                            @RequestParam("receiver") User receiver) {

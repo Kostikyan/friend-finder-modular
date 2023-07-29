@@ -22,6 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+/**
+ * The UserEndpoint class defines RESTful endpoints related to user authentication and registration.
+ * It provides methods for user login and registration.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -33,6 +37,12 @@ public class UserEndpoint {
     private final JwtTokenUtil tokenUtil;
     private final UserRegisterMapper userMapper;
 
+    /**
+     * Endpoint for user authentication (login).
+     *
+     * @param loginRequestDto The DTO containing user login credentials (email and password).
+     * @return ResponseEntity containing the authentication response DTO with a JWT token.
+     */
     @PostMapping("/login")
     public ResponseEntity<UserAuthResponseDto> auth(@RequestBody UserLoginRequestDto loginRequestDto) {
         Optional<User> byEmail = userService.findByEmail(loginRequestDto.getEmail());
@@ -49,7 +59,12 @@ public class UserEndpoint {
         return ResponseEntity.ok(new UserAuthResponseDto(token));
     }
 
-
+    /**
+     * Endpoint for user registration.
+     *
+     * @param registerRequestDto The DTO containing user registration information.
+     * @return ResponseEntity containing the registered user's DTO.
+     */
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody UserRegisterRequestDto registerRequestDto) {
         User user = userService.userRegister(registerRequestDto);

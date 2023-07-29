@@ -19,6 +19,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST API endpoints for admin operations.
+ *
+ * <p>This class handles various administrative operations such as retrieving all users,
+ * all posts, and all comments. It also provides functionality to delete users, posts,
+ * and comments by their respective IDs. Additionally, it allows blocking and unblocking
+ * users by their IDs.
+ */
 @RestController
 @RequestMapping("/admin")
 @RequiredArgsConstructor
@@ -32,21 +40,42 @@ public class AdminEndpoint {
     private final PostMapper postMapper;
     private final CommentMapper commentMapper;
 
+    /**
+     * Retrieves a list of all users.
+     *
+     * @return ResponseEntity with a list of UserDto containing user information.
+     */
     @GetMapping("/users")
     public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(userMapper.mapToDtos(userService.userFindAll()));
     }
 
+    /**
+     * Retrieves a list of all posts.
+     *
+     * @return ResponseEntity with a list of PostResponseDto containing post information.
+     */
     @GetMapping("/posts")
     public ResponseEntity<List<PostResponseDto>> getAllPosts() {
         return ResponseEntity.ok(postMapper.mapResp(postService.findAll()));
     }
 
+    /**
+     * Retrieves a list of all comments.
+     *
+     * @return ResponseEntity with a list of CommentRequestDto containing comment information.
+     */
     @GetMapping("/comments")
     public ResponseEntity<List<CommentRequestDto>> getAllComments() {
         return ResponseEntity.ok(commentMapper.mapToDtos(commentService.commentList()));
     }
 
+    /**
+     * Deletes a user by their ID.
+     *
+     * @param id The ID of the user to be deleted.
+     * @return ResponseEntity with a message indicating the success of the operation.
+     */
     @DeleteMapping("/users/delete/{id}")
     @Transactional
     public ResponseEntity<String> deleteUserById(@PathVariable("id") int id) {
@@ -55,6 +84,13 @@ public class AdminEndpoint {
         return new ResponseEntity<>(body, HttpStatus.OK);
     }
 
+
+    /**
+     * Deletes a posts by their ID.
+     *
+     * @param id The ID of the post to be deleted.
+     * @return ResponseEntity with a message indicating the success of the operation.
+     */
     @DeleteMapping("/posts/delete/{id}")
     @Transactional
     public ResponseEntity<String> deletePostById(@PathVariable("id") int id) {
@@ -63,6 +99,12 @@ public class AdminEndpoint {
         return new ResponseEntity<>(body, HttpStatus.OK);
     }
 
+    /**
+     * Deletes a comments by their ID.
+     *
+     * @param id The ID of the comment to be deleted.
+     * @return ResponseEntity with a message indicating the success of the operation.
+     */
     @DeleteMapping("/comments/delete/{id}")
     @Transactional
     public ResponseEntity<String> deleteCommentById(@PathVariable("id") int id) {
@@ -71,6 +113,12 @@ public class AdminEndpoint {
         return new ResponseEntity<>(body, HttpStatus.OK);
     }
 
+    /**
+     * Blocks a user by their ID.
+     *
+     * @param id The ID of the user to be blocked.
+     * @return ResponseEntity with a message indicating the success of the operation.
+     */
     @PutMapping("/users/block/{id}")
     @Transactional
     public ResponseEntity<String> blockUserById(@PathVariable("id") int id) {
@@ -83,6 +131,12 @@ public class AdminEndpoint {
         return new ResponseEntity<>(body, HttpStatus.OK);
     }
 
+    /**
+     * Unblocks a user by their ID.
+     *
+     * @param id The ID of the user to be unblocked.
+     * @return ResponseEntity with a message indicating the success of the operation.
+     */
     @PutMapping("/users/unblock/{id}")
     @Transactional
     public ResponseEntity<String> unblockUserById(@PathVariable("id") int id) {
