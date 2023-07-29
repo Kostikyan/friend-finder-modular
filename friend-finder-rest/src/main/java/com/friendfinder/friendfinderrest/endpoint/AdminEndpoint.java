@@ -9,7 +9,7 @@ import com.friendfinder.friendfindercommon.mapper.UserMapper;
 import com.friendfinder.friendfindercommon.service.CommentService;
 import com.friendfinder.friendfindercommon.service.PostService;
 import com.friendfinder.friendfindercommon.service.UserService;
-import com.friendfinder.friendfinderrest.exception.WrongUserIdException;
+import com.friendfinder.friendfinderrest.exception.custom.WrongUserIdException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

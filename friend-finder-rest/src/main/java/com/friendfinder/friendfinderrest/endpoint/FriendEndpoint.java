@@ -3,7 +3,7 @@ package com.friendfinder.friendfinderrest.endpoint;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.FriendRequestService;
-import com.friendfinder.friendfinderrest.exception.DeleteFriendNotFoundException;
+import com.friendfinder.friendfinderrest.exception.custom.DeleteFriendNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
