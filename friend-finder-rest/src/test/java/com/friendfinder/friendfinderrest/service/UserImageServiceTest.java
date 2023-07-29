@@ -1,21 +1,13 @@
 package com.friendfinder.friendfinderrest.service;
 
-import com.friendfinder.friendfindercommon.dto.postDto.PostResponseDto;
 import com.friendfinder.friendfindercommon.entity.Country;
-import com.friendfinder.friendfindercommon.entity.Post;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.UserImage;
 import com.friendfinder.friendfindercommon.entity.types.UserGender;
 import com.friendfinder.friendfindercommon.entity.types.UserRole;
-import com.friendfinder.friendfindercommon.mapper.PostMapper;
-import com.friendfinder.friendfindercommon.repository.PostRepository;
 import com.friendfinder.friendfindercommon.repository.UserImageRepository;
 import com.friendfinder.friendfindercommon.repository.UserRepository;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
-import com.friendfinder.friendfindercommon.service.FriendRequestService;
-import com.friendfinder.friendfindercommon.service.UserActivityService;
-import com.friendfinder.friendfindercommon.service.UserImageService;
-import com.friendfinder.friendfindercommon.service.impl.PostServiceImpl;
 import com.friendfinder.friendfindercommon.service.impl.UserImageServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +17,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,10 +27,10 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
  class UserImageServiceTest {
@@ -158,20 +152,5 @@ import static org.mockito.Mockito.*;
                 .imageName("image.jpg")
                 .user(user.getUser())
                 .build();
-    }
-
-    private List<UserImage> createUserImage() {
-        CurrentUser user = createUser();
-        UserImage userImage = UserImage.builder()
-                .id(1)
-                .imageName("image.jpg")
-                .user(user.getUser())
-                .build();
-        UserImage userImage2 = UserImage.builder()
-                .id(1)
-                .imageName("image.jpg")
-                .user(user.getUser())
-                .build();
-        return List.of(userImage, userImage2);
     }
 }
