@@ -2,13 +2,19 @@ package com.friendfinder.friendfinderrest.endpoint;
 
 import com.friendfinder.friendfindercommon.dto.contactDto.ContactFormRequestDto;
 import com.friendfinder.friendfindercommon.service.impl.MailService;
+import com.friendfinder.friendfinderrest.exception.FilterMailContactException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/contact")
 @RequiredArgsConstructor
+@Slf4j
 public class ContactEndpoint {
 
     private final MailService mailService;
@@ -18,6 +24,7 @@ public class ContactEndpoint {
             @RequestBody ContactFormRequestDto contactFormRequestDto
     ) {
         if (!filterMailContact(contactFormRequestDto)) {
+            log.error("wrong contact form data, class: ContactEndpoint, method: sendContact", new FilterMailContactException("wrong contact form data"));
             return ResponseEntity.badRequest().build();
         }
 
