@@ -38,7 +38,7 @@ public class TimelineEndpoint {
         );
     }
 
-    @PutMapping("/change-profile-pic")
+    @PostMapping("/change-profile-pic")
     public ResponseEntity<String> changeProfilePic(@RequestParam MultipartFile profilePic,
                                                   @AuthenticationPrincipal CurrentUser currentUser) {
         UserImage userImage = UserImage.builder()
@@ -51,7 +51,7 @@ public class TimelineEndpoint {
         return ResponseEntity.ok("the user with id {" + user.getId() + "} has changed the profile picture");
     }
 
-    @PutMapping("/change-profile-bg-pic")
+    @PostMapping("/change-profile-bg-pic")
     public ResponseEntity<String> changeProfileBackgroundPic(@RequestParam MultipartFile image,
                                                             @AuthenticationPrincipal CurrentUser currentUser) {
         User user = timelineService.updateUserProfileBackgroundPic(image, currentUser);
