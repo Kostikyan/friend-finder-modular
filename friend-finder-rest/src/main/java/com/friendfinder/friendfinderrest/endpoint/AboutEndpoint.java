@@ -7,7 +7,7 @@ import com.friendfinder.friendfindercommon.service.InterestsService;
 import com.friendfinder.friendfindercommon.service.LanguageService;
 import com.friendfinder.friendfindercommon.service.UserService;
 import com.friendfinder.friendfindercommon.service.WorkExperiencesService;
-import com.friendfinder.friendfinderrest.exception.ChangePasswordException;
+import com.friendfinder.friendfinderrest.exception.custom.ChangePasswordException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

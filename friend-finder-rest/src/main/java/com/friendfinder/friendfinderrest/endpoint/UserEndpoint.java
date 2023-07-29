@@ -7,7 +7,7 @@ import com.friendfinder.friendfindercommon.dto.userDto.UserRegisterRequestDto;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.mapper.UserRegisterMapper;
 import com.friendfinder.friendfindercommon.service.UserService;
-import com.friendfinder.friendfinderrest.exception.UserLoginException;
+import com.friendfinder.friendfinderrest.exception.custom.UserLoginException;
 import com.friendfinder.friendfinderrest.util.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
