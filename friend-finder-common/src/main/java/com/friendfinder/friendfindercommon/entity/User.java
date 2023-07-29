@@ -3,6 +3,8 @@ package com.friendfinder.friendfindercommon.entity;
 import com.friendfinder.friendfindercommon.entity.types.UserGender;
 import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +24,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty
     private String name;
+
+    @NotEmpty
     private String surname;
+
+    @NotBlank
     private String email;
+
+    @NotEmpty
     private String password;
 
     @Column(name = "date_of_birth")

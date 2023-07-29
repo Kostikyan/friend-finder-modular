@@ -1,6 +1,9 @@
 package com.friendfinder.friendfindercommon.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Entity
@@ -18,9 +21,11 @@ public class WorkExperiences {
     private String weDesignation;
 
     @Column(name = "we_from_date")
+    @Min(1930)
     private int weFromDate;
 
     @Column(name = "we_to_date")
+    @Max(2030)
     private int weToDate;
 
     @Column(name = "we_city")
@@ -30,6 +35,7 @@ public class WorkExperiences {
     private String weDescription;
 
     @ManyToOne
+    @NotEmpty
     private User user;
 
 }

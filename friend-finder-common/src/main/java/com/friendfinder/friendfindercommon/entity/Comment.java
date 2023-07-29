@@ -1,6 +1,7 @@
 package com.friendfinder.friendfindercommon.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,9 +20,11 @@ public class Comment {
     private int id;
 
     @ManyToOne
+    @NotEmpty
     private User user;
 
     @ManyToOne
+    @NotEmpty
     private Post post;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")

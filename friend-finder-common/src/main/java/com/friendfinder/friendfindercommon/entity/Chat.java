@@ -1,6 +1,7 @@
 package com.friendfinder.friendfindercommon.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,10 +22,12 @@ public class Chat {
 
     @ManyToOne
     @JoinColumn(name = "current_user_id")
+    @NotEmpty(message = "Current user can't be empty")
     private User currentUser;
 
     @ManyToOne
     @JoinColumn(name = "another_user_id")
+    @NotEmpty(message = "Receiver user can't be empty")
     private User anotherUser;
 
 

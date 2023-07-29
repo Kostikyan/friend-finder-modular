@@ -1,6 +1,7 @@
 package com.friendfinder.friendfindercommon.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,6 +30,7 @@ public class Post {
     private Date postDatetime;
 
     @ManyToOne
+    @NotEmpty(message = "user can't be empty")
     private User user;
 
 }
