@@ -19,18 +19,13 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -98,52 +93,46 @@ class TimelineServiceTest {
 
     @Test
     void testUpdateUserProfilePic() {
-        Path path = Paths.get("/Users/Spring Teamwork Website/friend-finder-modular/images/224617286621022_6123cf7b4932030018457ae6.webp");
-        String name = "224617286621022_6123cf7b4932030018457ae6.webp";
-        String originalFileName = "224617286621022_6123cf7b4932030018457ae6.webp";
-        String contentType = "image/webp";
-        byte[] content = null;
-        try {
-            content = Files.readAllBytes(path);
-        } catch (final IOException e) {
-            assertFalse(false);
-        }
-        MultipartFile result = new MockMultipartFile(name,
-                originalFileName, contentType, content);
+        byte[] profilePicData = "Dummy profile pic data".getBytes();
+
+        MockMultipartFile image = new MockMultipartFile(
+                "image1010IgOsadlCAAsd",
+                "image1010IgOsadlCAAsd.jpg",
+                "image/jpeg",
+                profilePicData
+        );
+
         CurrentUser user = currentUser;
         UserImage userImage = UserImage.builder()
                 .user(user.getUser())
                 .imageName("profilePic")
                 .build();
 
-        when(timelineService.updateUserProfilePic(result, user, userImage)).thenReturn(user.getUser());
-        User updatedUser = timelineService.updateUserProfilePic(result, user, userImage);
+        when(timelineService.updateUserProfilePic(image, user, userImage)).thenReturn(user.getUser());
+        User updatedUser = timelineService.updateUserProfilePic(image, user, userImage);
 
-        assertEquals(result.getName().endsWith("294672857080586_224617286621022_6123cf7b4932030018457ae6.webp"),
-                updatedUser.getProfilePicture().endsWith("294672857080586_224617286621022_6123cf7b4932030018457ae6.webp"));
+        assertTrue(image.getName().contains("image1010IgOsadlCAAsd") &&
+                updatedUser.getProfilePicture().contains("image1010IgOsadlCAAsd"));
     }
 
     @Test
     void testUpdateUserProfileBackgroundPic() {
-        Path path = Paths.get("/Users/Spring Teamwork Website/friend-finder-modular/images/224617286621022_6123cf7b4932030018457ae6.webp");
-        String name = "224617286621022_6123cf7b4932030018457ae6.webp";
-        String originalFileName = "224617286621022_6123cf7b4932030018457ae6.webp";
-        String contentType = "image/webp";
-        byte[] content = null;
-        try {
-            content = Files.readAllBytes(path);
-        } catch (final IOException e) {
-            assertFalse(false);
-        }
-        MultipartFile result = new MockMultipartFile(name,
-                originalFileName, contentType, content);
+        byte[] profilePicData = "Dummy profile pic data".getBytes();
+
+        MockMultipartFile image = new MockMultipartFile(
+                "image1010IgOsadlCAAsd",
+                "image1010IgOsadlCAAsd.jpg",
+                "image/jpeg",
+                profilePicData
+        );
+
         CurrentUser user = currentUser;
 
-        when(timelineService.updateUserProfileBackgroundPic(result, user)).thenReturn(user.getUser());
-        User updatedUser = timelineService.updateUserProfileBackgroundPic(result, user);
+        when(timelineService.updateUserProfileBackgroundPic(image, user)).thenReturn(user.getUser());
+        User updatedUser = timelineService.updateUserProfileBackgroundPic(image, user);
 
-        assertEquals(result.getName().endsWith("294672857080586_224617286621022_6123cf7b4932030018457ae6.webp"),
-                updatedUser.getProfileBackgroundPic().endsWith("294672857080586_224617286621022_6123cf7b4932030018457ae6.webp"));
+        assertTrue(image.getName().contains("image1010IgOsadlCAAsd") &&
+                updatedUser.getProfileBackgroundPic().contains("image1010IgOsadlCAAsd"));
     }
 
     private CurrentUser mockCurrentUser() {
