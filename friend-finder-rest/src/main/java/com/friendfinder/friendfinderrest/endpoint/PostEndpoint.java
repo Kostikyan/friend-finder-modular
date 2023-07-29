@@ -68,8 +68,8 @@ public class PostEndpoint {
         return ResponseEntity.ok(commentService.addComment(comment, currentUser, post));
     }
 
-    @DeleteMapping("/comment/delete")
-    public ResponseEntity<Comment>  removeComment(@RequestParam("id") int id) {
+    @DeleteMapping("/comment/delete/{id}")
+    public ResponseEntity<Comment>  removeComment(@PathVariable ("id") int id) {
         return ResponseEntity.ok(commentService.deleteComment(id));
     }
 }

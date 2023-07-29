@@ -151,7 +151,6 @@ class PostServiceTest {
         MultipartFile image = mock(MultipartFile.class);
         MultipartFile video = mock(MultipartFile.class);
         String imgName = "image.jpg";
-        String musicFileName = null;
         PostRequestDto requestDto = new PostRequestDto();
         requestDto.setDescription("Post with an image");
 
@@ -174,7 +173,6 @@ class PostServiceTest {
     void testPostSaveWithVideo() {
         MultipartFile image = mock(MultipartFile.class);
         MultipartFile video = mock(MultipartFile.class);
-        String imgName = null;
         String musicFileName = "video.mp4";
         PostRequestDto requestDto = new PostRequestDto();
         requestDto.setDescription("Post with a video");

@@ -42,7 +42,7 @@ class UserEndpointTest {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @AfterEach
     void tearDown() {
