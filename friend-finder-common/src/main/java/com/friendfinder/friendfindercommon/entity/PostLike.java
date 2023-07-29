@@ -2,6 +2,7 @@ package com.friendfinder.friendfindercommon.entity;
 
 import com.friendfinder.friendfindercommon.entity.types.LikeStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 @Getter
@@ -18,11 +19,14 @@ public class PostLike {
     private int id;
 
     @Enumerated(value = EnumType.STRING)
+    @NotEmpty
     private LikeStatus likeStatus;
 
     @ManyToOne
+    @NotEmpty
     private Post post;
 
     @ManyToOne
+    @NotEmpty
     private User user;
 }

@@ -1,6 +1,7 @@
 package com.friendfinder.friendfindercommon.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class UserActivity {
     private long id;
 
     @ManyToOne
+    @NotEmpty
     private User user;
 
     private String type;

@@ -31,8 +31,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ContactEndpointTest {
 
     @Autowired
-    private MailService mailService;
-    @Autowired
     private UserRepository userRepository;
 
     @Autowired

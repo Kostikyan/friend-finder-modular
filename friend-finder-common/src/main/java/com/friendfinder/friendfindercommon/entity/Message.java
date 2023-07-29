@@ -1,6 +1,7 @@
 package com.friendfinder.friendfindercommon.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -17,14 +18,17 @@ public class Message {
     private int id;
 
     @ManyToOne
+    @NotEmpty(message = "chat can't be empty")
     @JoinColumn(name = "chat_id")
     private Chat chat;
 
     @ManyToOne
+    @NotEmpty(message = "sender can't be empty")
     @JoinColumn(name = "sender_id")
     private User sender;
 
     @ManyToOne
+    @NotEmpty(message = "receiver can't be empty")
     @JoinColumn(name = "receiver_id")
     private User receiver;
 
