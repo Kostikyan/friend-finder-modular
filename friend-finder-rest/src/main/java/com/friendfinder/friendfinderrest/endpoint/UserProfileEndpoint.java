@@ -92,8 +92,8 @@ public class UserProfileEndpoint {
      * @param id The ID of the post to be deleted.
      * @return ResponseEntity containing the deleted Post object.
      */
-    @DeleteMapping("/delete")
-    public ResponseEntity<Post> deletePostById(@RequestParam("id") int id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Post> deletePostById(@PathVariable("id") int id) {
         return ResponseEntity.ok(postService.deletePostId(id));
 
     }
@@ -151,8 +151,8 @@ public class UserProfileEndpoint {
      * @param id The ID of the comment to be removed.
      * @return ResponseEntity containing the deleted Comment object.
      */
-    @DeleteMapping("/comment/delete")
-    public ResponseEntity<Comment> removeComment(@RequestParam("id") int id) {
+    @DeleteMapping("/comment/delete{id}")
+    public ResponseEntity<Comment> removeComment(@PathVariable("id") int id) {
         return ResponseEntity.ok(commentService.deleteComment(id));
     }
 }
