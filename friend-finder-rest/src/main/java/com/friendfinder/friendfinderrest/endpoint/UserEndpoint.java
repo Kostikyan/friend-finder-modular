@@ -45,15 +45,16 @@ public class UserEndpoint {
      */
     @PostMapping("/login")
     public ResponseEntity<UserAuthResponseDto> auth(@RequestBody UserLoginRequestDto loginRequestDto) {
-        Optional<User> byEmail = userService.findByEmail(loginRequestDto.getEmail());
-        if (byEmail.isEmpty()) {
-            log.error("User email is incorrect", new UsernameNotFoundException("username: " + loginRequestDto.getEmail()));
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        User user = byEmail.get();
-        if (!passwordEncoder.matches(loginRequestDto.getPassword(), user.getPassword())) {
-            log.error("Wrong password", new UserLoginException("wrong user password"));
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        int login = userService.userLogin(loginRequestDto);
+        if(login != 0) {
+            if (login == 1) {
+                log.error("User email is incorrect", new UsernameNotFoundException("username: " + loginRequestDto.getEmail()));
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
+            else if (login == 2) {
+                log.error("Wrong password", new UserLoginException("wrong user password"));
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
         }
         String token = tokenUtil.generateToken(loginRequestDto.getEmail());
         return ResponseEntity.ok(new UserAuthResponseDto(token));
