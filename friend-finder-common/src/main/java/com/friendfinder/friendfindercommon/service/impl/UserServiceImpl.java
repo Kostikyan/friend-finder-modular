@@ -1,10 +1,12 @@
 package com.friendfinder.friendfindercommon.service.impl;
 
+import com.friendfinder.friendfindercommon.dto.userDto.UserAuthResponseDto;
 import com.friendfinder.friendfindercommon.dto.userDto.UserLoginRequestDto;
 import com.friendfinder.friendfindercommon.dto.userDto.UserRegisterRequestDto;
 import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.types.UserRole;
+import com.friendfinder.friendfindercommon.exception.custom.UserLoginException;
 import com.friendfinder.friendfindercommon.repository.CountryRepository;
 import com.friendfinder.friendfindercommon.repository.UserRepository;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
@@ -12,9 +14,13 @@ import com.friendfinder.friendfindercommon.service.FriendRequestService;
 import com.friendfinder.friendfindercommon.service.UserService;
 import com.friendfinder.friendfindercommon.mapper.UserRegisterMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -77,6 +83,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
@@ -142,16 +149,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int userLogin(UserLoginRequestDto loginRequestDto) {
+    public boolean userLogin(UserLoginRequestDto loginRequestDto) {
         Optional<User> byEmail = findByEmail(loginRequestDto.getEmail());
         if (byEmail.isEmpty()) {
-            return 1;
+            log.error("User email is incorrect", new UsernameNotFoundException("username: " + loginRequestDto.getEmail()));
+            return false;
         }
+
         User user = byEmail.get();
         if (!passwordEncoder.matches(loginRequestDto.getPassword(), user.getPassword())) {
-            return 2;
+            log.error("Wrong password", new UserLoginException("wrong user password"));
+            return false;
         }
-        return 0;
+
+        return true;
     }
 
     @Override

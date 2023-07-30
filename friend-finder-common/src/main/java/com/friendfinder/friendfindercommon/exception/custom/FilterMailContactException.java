@@ -1,4 +1,4 @@
-package com.friendfinder.friendfinderrest.exception.custom;
+package com.friendfinder.friendfindercommon.exception.custom;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

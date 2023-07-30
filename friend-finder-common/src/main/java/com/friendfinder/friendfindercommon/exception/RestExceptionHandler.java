@@ -1,8 +1,8 @@
-package com.friendfinder.friendfinderrest.exception;
+package com.friendfinder.friendfindercommon.exception;
 
 import com.friendfinder.friendfindercommon.dto.exceptionRestDto.RestErrorDto;
-import com.friendfinder.friendfinderrest.exception.custom.DeleteFriendNotFoundException;
-import com.friendfinder.friendfinderrest.exception.custom.RejectFriendRequestException;
+import com.friendfinder.friendfindercommon.exception.custom.DeleteFriendNotFoundException;
+import com.friendfinder.friendfindercommon.exception.custom.RejectFriendRequestException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

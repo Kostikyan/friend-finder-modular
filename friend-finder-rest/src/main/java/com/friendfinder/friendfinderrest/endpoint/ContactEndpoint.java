@@ -2,7 +2,7 @@ package com.friendfinder.friendfinderrest.endpoint;
 
 import com.friendfinder.friendfindercommon.dto.contactDto.ContactFormRequestDto;
 import com.friendfinder.friendfindercommon.service.impl.MailService;
-import com.friendfinder.friendfinderrest.exception.custom.FilterMailContactException;
+import com.friendfinder.friendfindercommon.exception.custom.FilterMailContactException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

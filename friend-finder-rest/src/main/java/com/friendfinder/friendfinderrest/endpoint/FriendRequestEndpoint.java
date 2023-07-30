@@ -4,7 +4,7 @@ import com.friendfinder.friendfindercommon.entity.FriendRequest;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.types.FriendStatus;
 import com.friendfinder.friendfindercommon.service.FriendRequestService;
-import com.friendfinder.friendfinderrest.exception.custom.RejectFriendRequestException;
+import com.friendfinder.friendfindercommon.exception.custom.RejectFriendRequestException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

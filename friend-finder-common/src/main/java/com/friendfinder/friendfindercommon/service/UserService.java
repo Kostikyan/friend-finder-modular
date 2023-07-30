@@ -1,5 +1,6 @@
 package com.friendfinder.friendfindercommon.service;
 
+import com.friendfinder.friendfindercommon.dto.userDto.UserAuthResponseDto;
 import com.friendfinder.friendfindercommon.dto.userDto.UserLoginRequestDto;
 import com.friendfinder.friendfindercommon.dto.userDto.UserRegisterRequestDto;
 import com.friendfinder.friendfindercommon.entity.Country;
@@ -7,6 +8,7 @@ import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +22,7 @@ public interface UserService {
 
     User userRegister(UserRegisterRequestDto dto);
 
-    int userLogin(UserLoginRequestDto loginRequestDto);
+    boolean userLogin(UserLoginRequestDto loginRequestDto);
 
     void updateUserPasswordById(String password, int id);
 
