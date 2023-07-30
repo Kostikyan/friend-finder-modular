@@ -1,5 +1,6 @@
 package com.friendfinder.friendfindercommon.service.impl;
 
+import com.friendfinder.friendfindercommon.dto.userDto.UserLoginRequestDto;
 import com.friendfinder.friendfindercommon.dto.userDto.UserRegisterRequestDto;
 import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
@@ -138,6 +139,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public int userLogin(UserLoginRequestDto loginRequestDto) {
+        Optional<User> byEmail = findByEmail(loginRequestDto.getEmail());
+        if (byEmail.isEmpty()) {
+            return 1;
+        }
+        User user = byEmail.get();
+        if (!passwordEncoder.matches(loginRequestDto.getPassword(), user.getPassword())) {
+            return 2;
+        }
+        return 0;
     }
 
     @Override
