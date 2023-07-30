@@ -4,11 +4,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "work_experiences")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class WorkExperiences {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

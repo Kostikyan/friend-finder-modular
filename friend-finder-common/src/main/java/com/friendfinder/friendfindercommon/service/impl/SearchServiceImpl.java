@@ -46,8 +46,6 @@ public class SearchServiceImpl implements SearchService {
     public Page<User> searchByKeyword(String keyword, CurrentUser currentUser, int currentPage) {
         Pageable pageable = PageRequest.of(currentPage - 1, 2);
         Page<User> byNameContainsOrSurnameContains = userRepository.findByNameContainingIgnoreCaseOrSurnameContainingIgnoreCase(keyword, keyword, pageable);
-//        List<User> content = byNameContainsOrSurnameContains.getContent();
-//        content.remove(currentUser.getUser());
         return byNameContainsOrSurnameContains;
     }
 
