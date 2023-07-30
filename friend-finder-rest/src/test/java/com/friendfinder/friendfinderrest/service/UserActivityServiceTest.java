@@ -1,10 +1,7 @@
 package com.friendfinder.friendfinderrest.service;
 
-import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.UserActivity;
-import com.friendfinder.friendfindercommon.entity.types.UserGender;
-import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import com.friendfinder.friendfindercommon.repository.UserActivityRepository;
 import com.friendfinder.friendfindercommon.service.impl.UserActivityServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,11 +14,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockUser;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -81,20 +79,5 @@ class UserActivityServiceTest {
         verify(userActivityRepository, times(1)).save(any(UserActivity.class));
     }
 
-    private User mockUser() {
-        return User.builder()
-                .id(2)
-                .name("user")
-                .surname("user")
-                .email("test@user.com")
-                .password("user")
-                .dateOfBirth(new Date(1990, 5, 15))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(new Country(1, "Afghanistan"))
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.USER)
-                .build();
-    }
+
 }

@@ -1,10 +1,7 @@
 package com.friendfinder.friendfinderrest.service;
 
-import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.WorkExperiences;
-import com.friendfinder.friendfindercommon.entity.types.UserGender;
-import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import com.friendfinder.friendfindercommon.repository.WorkExperiencesRepository;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.impl.WorkExperiencesServiceImpl;
@@ -17,9 +14,9 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -69,23 +66,6 @@ class WorkExperienceServiceTest {
         assertEquals(workExperiences, result);
 
         verify(workExperiencesRepository, times(1)).save(workExperiences);
-    }
-
-    private User mockUser() {
-        return User.builder()
-                .id(2)
-                .name("user")
-                .surname("user")
-                .email("test@user.com")
-                .password("user")
-                .dateOfBirth(new Date(1990, 5, 15))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(new Country(1, "Afghanistan"))
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.USER)
-                .build();
     }
 
     private WorkExperiences mockWE(){

@@ -1,10 +1,7 @@
 package com.friendfinder.friendfinderrest.service;
 
-import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.UserImage;
-import com.friendfinder.friendfindercommon.entity.types.UserGender;
-import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import com.friendfinder.friendfindercommon.repository.UserImageRepository;
 import com.friendfinder.friendfindercommon.repository.UserRepository;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
@@ -22,10 +19,11 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static com.friendfinder.friendfinderrest.util.TestUtil.createImage;
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockCurrentUser;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
@@ -49,7 +47,7 @@ import static org.mockito.Mockito.when;
     void setUp() {
         MockitoAnnotations.openMocks(this);
         userImageService = new UserImageServiceImpl(userImageRepository, userRepository);
-        CurrentUser  currentUser = createUser();
+        CurrentUser  currentUser = mockCurrentUser();
     }
 
     @Test
@@ -75,7 +73,7 @@ import static org.mockito.Mockito.when;
 
     @Test
     void testUserImageSave() {
-        CurrentUser currentUser = createUser();
+        CurrentUser currentUser = mockCurrentUser();
         UserImage userImage = new UserImage();
 
         userImageService.userImageSave(userImage, currentUser);
@@ -126,31 +124,4 @@ import static org.mockito.Mockito.when;
         assertNull(deletedPost, "Deleted post should be null for non-existing ID.");
     }
 
-    private CurrentUser createUser() {
-        Country country = new Country(1, "Afghanistan");
-        User currentUser = User.builder()
-                .id(1)
-                .name("user")
-                .surname("user")
-                .email("user1@mail.ru")
-                .password("user")
-                .dateOfBirth(new Date(1990, 5, 15))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(country)
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.USER)
-                .build();
-        return new CurrentUser(currentUser);
-    }
-
-    private UserImage createImage() {
-        CurrentUser user = createUser();
-        return UserImage.builder()
-                .id(1)
-                .imageName("image.jpg")
-                .user(user.getUser())
-                .build();
-    }
 }

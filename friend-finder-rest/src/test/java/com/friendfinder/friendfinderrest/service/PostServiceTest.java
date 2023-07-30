@@ -2,13 +2,10 @@ package com.friendfinder.friendfinderrest.service;
 
 import com.friendfinder.friendfindercommon.dto.postDto.PostRequestDto;
 import com.friendfinder.friendfindercommon.dto.postDto.PostResponseDto;
-import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.FriendRequest;
 import com.friendfinder.friendfindercommon.entity.Post;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.types.FriendStatus;
-import com.friendfinder.friendfindercommon.entity.types.UserGender;
-import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import com.friendfinder.friendfindercommon.mapper.PostMapper;
 import com.friendfinder.friendfindercommon.repository.PostRepository;
 import com.friendfinder.friendfindercommon.repository.UserRepository;
@@ -32,6 +29,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.friendfinder.friendfinderrest.util.TestUtil.createPost;
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockCurrentUser;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -63,12 +62,12 @@ class PostServiceTest {
         MockitoAnnotations.openMocks(this);
         postService = new PostServiceImpl(postRepository, userRepository,
                 friendRequestService, postMapper, userActivityService);
-        currentUser = createUser();
+        currentUser = mockCurrentUser();
     }
 
     @Test
     void testPostFindPage() {
-        CurrentUser currentUser = createUser();
+        CurrentUser currentUser = mockCurrentUser();
         int pageNumber = 1;
         List<PostResponseDto> allPostFriends = createPostResponseDto();
         when(friendRequestService.findFriendsByUserId(currentUser.getUser().getId())).thenReturn(List.of(currentUser.getUser()));
@@ -290,44 +289,16 @@ class PostServiceTest {
         return List.of(post1, post2);
     }
 
-    private Post createPost() {
-        CurrentUser user = createUser();
-        return Post.builder()
-                .description("barev")
-                .imgName("image.jpg")
-                .musicFileName("video.mp4")
-                .postDatetime(new Date())
-                .user(user.getUser())
-                .build();
-    }
-
     private FriendRequest createFriend() {
-        CurrentUser currentUser = createUser();
+        CurrentUser currentUser = mockCurrentUser();
         return FriendRequest.builder()
                 .id(1)
                 .sender(currentUser.getUser())
-                .receiver(createUser().getUser())
+                .receiver(currentUser.getUser())
                 .status(FriendStatus.PENDING)
                 .build();
 
     }
 
-    private CurrentUser createUser() {
-        Country country = new Country(1, "Afghanistan");
-        User currentUser = User.builder()
-                .id(1)
-                .name("user")
-                .surname("user")
-                .email("user1@mail.ru")
-                .password("user")
-                .dateOfBirth(new Date(1990, 5, 15))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(country)
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.USER)
-                .build();
-        return new CurrentUser(currentUser);
-    }
+
 }

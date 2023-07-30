@@ -1,10 +1,7 @@
 package com.friendfinder.friendfinderrest.service;
 
 import com.friendfinder.friendfindercommon.entity.Chat;
-import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
-import com.friendfinder.friendfindercommon.entity.types.UserGender;
-import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import com.friendfinder.friendfindercommon.mapper.UserRegisterMapper;
 import com.friendfinder.friendfindercommon.repository.ChatRepository;
 import com.friendfinder.friendfindercommon.repository.CountryRepository;
@@ -23,10 +20,11 @@ import org.springframework.mail.MailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockUserFirst;
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockUserSecond;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -117,38 +115,8 @@ class ChatServiceTest {
 
     @Test
     void testSave() {
-        Country country = new Country(1, "Afghanistan");
-
-        User userFirst = User.builder()
-                .id(1)
-                .name("user")
-                .surname("user")
-                .email("user1@mail.ru")
-                .password("user")
-                .dateOfBirth(new Date(1990, 5, 15))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(country)
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.USER)
-                .build();
-
-        User userSecond = User.builder()
-                .id(2)
-                .name("user")
-                .surname("user")
-                .email("user2@mail.ru")
-                .password("user")
-                .dateOfBirth(new Date(1990, 5, 15))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(country)
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.USER)
-                .build();
-
+        User userFirst = mockUserFirst();
+        User userSecond = mockUserSecond();
         Chat chat = new Chat();
         chat.setAnotherUser(userFirst);
         chat.setCurrentUser(userSecond);
