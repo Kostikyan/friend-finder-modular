@@ -1,11 +1,8 @@
 package com.friendfinder.friendfinderrest.service;
 
-import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.FriendRequest;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.types.FriendStatus;
-import com.friendfinder.friendfindercommon.entity.types.UserGender;
-import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import com.friendfinder.friendfindercommon.repository.FriendRequestRepository;
 import com.friendfinder.friendfindercommon.repository.UserRepository;
 import com.friendfinder.friendfindercommon.service.impl.FriendRequestServiceImpl;
@@ -20,8 +17,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockUserFirst;
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockUserSecond;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -267,39 +269,5 @@ class FriendRequestServiceTest {
         int friendCount = friendRequestService.findFriendsByUserIdCount(user2.getId());
 
         assertEquals(3, friendCount);
-    }
-
-    private User mockUserFirst() {
-        return User.builder()
-                .id(1)
-                .name("user")
-                .surname("user")
-                .email("user@friendfinder.com")
-                .password("user")
-                .dateOfBirth(new Date(1990, 5, 15))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(new Country(1, "Afghanistan"))
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.ADMIN)
-                .build();
-    }
-
-    private User mockUserSecond() {
-        return User.builder()
-                .id(2)
-                .name("user")
-                .surname("user")
-                .email("test@user.com")
-                .password("user")
-                .dateOfBirth(new Date(1990, 5, 15))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(new Country(1, "Afghanistan"))
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.USER)
-                .build();
     }
 }

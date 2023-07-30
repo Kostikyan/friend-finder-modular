@@ -2,7 +2,6 @@ package com.friendfinder.friendfinderrest.service;
 
 import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
-import com.friendfinder.friendfindercommon.entity.types.UserGender;
 import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import com.friendfinder.friendfindercommon.mapper.UserRegisterMapper;
 import com.friendfinder.friendfindercommon.repository.CountryRepository;
@@ -24,10 +23,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockCurrentUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
@@ -225,21 +224,4 @@ class UserServiceTest {
         verify(userRepository).deleteById(userId);
     }
 
-    private CurrentUser mockCurrentUser(){
-        User currentUser = User.builder()
-                .id(1)
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.USER)
-                .name("John")
-                .surname("Doe")
-                .email("john.doe@example.com")
-                .password("password123")
-                .dateOfBirth(new Date(2000, 10, 10))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(new Country(1, "United States"))
-                .build();
-        return new CurrentUser(currentUser);
-    }
 }

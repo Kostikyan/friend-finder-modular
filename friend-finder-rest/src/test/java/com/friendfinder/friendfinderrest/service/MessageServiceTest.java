@@ -1,8 +1,5 @@
 package com.friendfinder.friendfinderrest.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
 import com.friendfinder.friendfindercommon.dto.chatDto.SendMessageDto;
 import com.friendfinder.friendfindercommon.entity.Chat;
 import com.friendfinder.friendfindercommon.entity.Message;
@@ -17,6 +14,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class MessageServiceTest {

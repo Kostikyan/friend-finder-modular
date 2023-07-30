@@ -63,7 +63,6 @@ public class AboutEndpoint {
      * which represents a subset of the user's profile information. The AboutUserDto object includes lists
      * of languages, interests, and work experiences associated with the user.
      *
-     * @param userId The unique identifier of the user whose profile information is requested.
      * @return ResponseEntity containing an AboutUserDto object with the user's profile information.
      */
     @GetMapping("/{userId}")

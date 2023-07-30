@@ -1,39 +1,31 @@
 package com.friendfinder.friendfinderrest.service;
 
-import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
-import com.friendfinder.friendfindercommon.entity.types.UserGender;
-import com.friendfinder.friendfindercommon.entity.types.UserRole;
-import com.friendfinder.friendfindercommon.repository.FriendRequestRepository;
 import com.friendfinder.friendfindercommon.repository.UserRepository;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
-import com.friendfinder.friendfindercommon.service.impl.FriendRequestServiceImpl;
-import com.friendfinder.friendfindercommon.service.impl.MailService;
 import com.friendfinder.friendfindercommon.service.impl.SearchServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class SearchServiceTest {
+ class SearchServiceTest {
 
     @Mock
     private UserRepository userRepository;
@@ -101,20 +93,5 @@ public class SearchServiceTest {
         return new PageImpl<>(userList);
     }
 
-    private User mockUser() {
-        return User.builder()
-                .id(2)
-                .name("user")
-                .surname("user")
-                .email("test@user.com")
-                .password("user")
-                .dateOfBirth(new Date(1990, 5, 15))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(new Country(1, "Afghanistan"))
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.USER)
-                .build();
-    }
+
 }
