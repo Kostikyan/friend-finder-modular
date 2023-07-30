@@ -52,7 +52,7 @@ public class SpringSecurityConfig {
                         .requestMatchers("/v3/api-docs/**").permitAll()
                         .requestMatchers("/user/register").permitAll()
                         .requestMatchers("/user/login").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/posts/images/page/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/posts/images/page/**").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 );

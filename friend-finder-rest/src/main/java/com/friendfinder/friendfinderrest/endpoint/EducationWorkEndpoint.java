@@ -37,8 +37,8 @@ public class EducationWorkEndpoint {
     /**
      * Adds education details to the user's profile.
      *
-     * @param education      The DTO containing the education details.
-     * @param currentUser    The currently authenticated user.
+     * @param education   The DTO containing the education details.
+     * @param currentUser The currently authenticated user.
      * @return ResponseEntity with the response DTO containing the saved education details.
      */
     @PostMapping("/education/add")
@@ -52,8 +52,8 @@ public class EducationWorkEndpoint {
     /**
      * Adds work experiences details to the user's profile.
      *
-     * @param workExperiences   The DTO containing the work experiences details.
-     * @param currentUser       The currently authenticated user.
+     * @param workExperiences The DTO containing the work experiences details.
+     * @param currentUser     The currently authenticated user.
      * @return ResponseEntity with the response DTO containing the saved work experiences details.
      */
     @PostMapping("/work/add")

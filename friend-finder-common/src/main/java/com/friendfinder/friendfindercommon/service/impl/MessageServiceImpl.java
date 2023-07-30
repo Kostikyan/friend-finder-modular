@@ -4,9 +4,9 @@ import com.friendfinder.friendfindercommon.dto.chatDto.SendMessageDto;
 import com.friendfinder.friendfindercommon.entity.Chat;
 import com.friendfinder.friendfindercommon.entity.Message;
 import com.friendfinder.friendfindercommon.entity.User;
+import com.friendfinder.friendfindercommon.repository.MessageRepository;
 import com.friendfinder.friendfindercommon.service.ChatService;
 import com.friendfinder.friendfindercommon.service.MessageService;
-import com.friendfinder.friendfindercommon.repository.MessageRepository;
 import com.friendfinder.friendfindercommon.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -54,7 +54,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public boolean save(SendMessageDto sendMessageDto, User currentUser) {
-        if(sendMessageDto == null || currentUser == null) return false;
+        if (sendMessageDto == null || currentUser == null) return false;
 
         Optional<User> userById = userService.findUserById(sendMessageDto.getReceiverId());
         if (userById.isEmpty()) {
@@ -62,7 +62,7 @@ public class MessageServiceImpl implements MessageService {
         }
 
         Optional<Chat> chatById = chatService.findById(sendMessageDto.getChatId());
-        if(chatById.isEmpty()){
+        if (chatById.isEmpty()) {
             return false;
         }
 

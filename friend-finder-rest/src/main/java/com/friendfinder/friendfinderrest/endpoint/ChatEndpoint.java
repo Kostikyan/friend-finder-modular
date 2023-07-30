@@ -3,11 +3,11 @@ package com.friendfinder.friendfinderrest.endpoint;
 import com.friendfinder.friendfindercommon.dto.chatDto.ChatDto;
 import com.friendfinder.friendfindercommon.dto.chatDto.SendMessageDto;
 import com.friendfinder.friendfindercommon.dto.chatDto.SentMessageResponseDto;
+import com.friendfinder.friendfindercommon.exception.custom.ChatCreateException;
+import com.friendfinder.friendfindercommon.exception.custom.SendMessageException;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.ChatService;
 import com.friendfinder.friendfindercommon.service.MessageService;
-import com.friendfinder.friendfindercommon.exception.custom.ChatCreateException;
-import com.friendfinder.friendfindercommon.exception.custom.SendMessageException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -61,7 +61,7 @@ public class ChatEndpoint {
     public ResponseEntity<SentMessageResponseDto> sendMessage(@RequestBody SendMessageDto sendMessageDto,
                                                               @AuthenticationPrincipal CurrentUser currentUser) {
         boolean save = messageService.save(sendMessageDto, currentUser.getUser());
-        if(!save){
+        if (!save) {
             log.error("send message error, class: ChatEndpoint, method: sendMessage", new SendMessageException());
             ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

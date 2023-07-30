@@ -25,16 +25,16 @@ public class SearchEndpoint {
     /**
      * Endpoint for searching potential friends by keyword and page number.
      *
-     * @param keyword      The keyword to use for searching potential friends.
-     * @param currentPage  The page number to retrieve for paginated results.
-     * @param currentUser  The CurrentUser object representing the currently logged-in user.
+     * @param keyword     The keyword to use for searching potential friends.
+     * @param currentPage The page number to retrieve for paginated results.
+     * @param currentUser The CurrentUser object representing the currently logged-in user.
      * @return ResponseEntity containing a list of users who match the search criteria for the specified page.
      */
     @PostMapping("/{pageNumber}")
     public ResponseEntity<List<User>> listByPageSearch(@RequestParam String keyword,
-                                           @PathVariable("pageNumber") int currentPage,
-                                           @AuthenticationPrincipal CurrentUser currentUser) {
-        Page<User> page = searchService.searchByKeyword(keyword,currentUser,currentPage);
+                                                       @PathVariable("pageNumber") int currentPage,
+                                                       @AuthenticationPrincipal CurrentUser currentUser) {
+        Page<User> page = searchService.searchByKeyword(keyword, currentUser, currentPage);
         List<User> content = page.getContent();
         return ResponseEntity.ok(content);
     }

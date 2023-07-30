@@ -21,7 +21,9 @@ import java.util.Optional;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
+
     @Value("${site.url}")
     String siteUrl;
 
@@ -61,6 +63,6 @@ public class UserController {
     @GetMapping
     public String sendDataToHeader(@AuthenticationPrincipal CurrentUser currentUser, ModelMap map) {
         map.addAttribute("user", currentUser.getUser());
-            return "fragment/header-menu-fragment";
+        return "fragment/header-menu-fragment";
     }
 }

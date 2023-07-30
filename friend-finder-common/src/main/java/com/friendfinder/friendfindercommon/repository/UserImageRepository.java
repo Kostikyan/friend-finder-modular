@@ -9,9 +9,6 @@ import java.util.List;
 
 public interface UserImageRepository extends JpaRepository<UserImage, Integer> {
 
-
-    List<UserImage> findUserImageAllByUserId(int userId);
-
     List<UserImage> findByUserId(int userId);
 
     Page<UserImage> findUserImagesByUserIdIn(List<Integer> userImageId, Pageable pageable);

@@ -37,8 +37,8 @@ public class UserProfileEndpoint {
     /**
      * Endpoint to retrieve a paginated list of posts for a specific user.
      *
-     * @param user         The User object representing the user whose posts to retrieve.
-     * @param currentPage  The page number of the posts list to retrieve.
+     * @param user        The User object representing the user whose posts to retrieve.
+     * @param currentPage The page number of the posts list to retrieve.
      * @return ResponseEntity containing a list of Post objects representing the user's posts.
      */
     @GetMapping("/{userId}/page/{pageNumber}")
@@ -53,10 +53,10 @@ public class UserProfileEndpoint {
     /**
      * Endpoint to add a new post for the current user.
      *
-     * @param requestDto   The PostRequestDto object containing the post data.
-     * @param currentUser  The CurrentUser object representing the currently authenticated user.
-     * @param image        The image file attached to the post (optional).
-     * @param video        The video file attached to the post (optional).
+     * @param requestDto  The PostRequestDto object containing the post data.
+     * @param currentUser The CurrentUser object representing the currently authenticated user.
+     * @param image       The image file attached to the post (optional).
+     * @param video       The video file attached to the post (optional).
      * @return ResponseEntity containing the newly created Post object.
      */
     @PostMapping("/add")
@@ -101,9 +101,9 @@ public class UserProfileEndpoint {
     /**
      * Endpoint to add a like to a post.
      *
-     * @param postLikeDto  The PostLikeDto object containing the like data.
-     * @param currentUser  The CurrentUser object representing the currently authenticated user.
-     * @param post         The Post object representing the post to like.
+     * @param postLikeDto The PostLikeDto object containing the like data.
+     * @param currentUser The CurrentUser object representing the currently authenticated user.
+     * @param post        The Post object representing the post to like.
      * @return ResponseEntity containing the PostLike object representing the like.
      */
     @PostMapping("/reaction/like/{postId}")
@@ -117,9 +117,9 @@ public class UserProfileEndpoint {
     /**
      * Endpoint to add a dislike to a post.
      *
-     * @param postLikeDto  The PostLikeDto object containing the dislike data.
-     * @param currentUser  The CurrentUser object representing the currently authenticated user.
-     * @param post         The Post object representing the post to dislike.
+     * @param postLikeDto The PostLikeDto object containing the dislike data.
+     * @param currentUser The CurrentUser object representing the currently authenticated user.
+     * @param post        The Post object representing the post to dislike.
      * @return ResponseEntity containing the PostLike object representing the dislike.
      */
     @PostMapping("/reaction/dislike/{postId}")
@@ -133,9 +133,9 @@ public class UserProfileEndpoint {
     /**
      * Endpoint to add a comment to a post.
      *
-     * @param comment      The CommentRequestDto object containing the comment data.
-     * @param currentUser  The CurrentUser object representing the currently authenticated user.
-     * @param post         The Post object representing the post to comment on.
+     * @param comment     The CommentRequestDto object containing the comment data.
+     * @param currentUser The CurrentUser object representing the currently authenticated user.
+     * @param post        The Post object representing the post to comment on.
      * @return ResponseEntity containing the Comment object representing the added comment.
      */
     @PostMapping("/comment/{postId}")

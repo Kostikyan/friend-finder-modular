@@ -22,7 +22,6 @@ import java.util.List;
 @RequestMapping("/users/image/profile")
 public class UserImageProfileController {
 
-
     private final UserImageService userImageService;
     private final FriendRequestService friendRequestService;
     private final UserActivityService userActivityService;

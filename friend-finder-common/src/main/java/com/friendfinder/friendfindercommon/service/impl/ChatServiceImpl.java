@@ -83,7 +83,7 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public boolean create(int userId, User user) {
-        if(userId == user.getId()){
+        if (userId == user.getId()) {
             return false;
         }
 
@@ -98,7 +98,7 @@ public class ChatServiceImpl implements ChatService {
         }
 
         Optional<Chat> byAnotherUserIdAndCurrentUserID = findByCurrentUserIdAndAnotherUserId(userId, user.getId());
-        if(byAnotherUserIdAndCurrentUserID.isPresent()) {
+        if (byAnotherUserIdAndCurrentUserID.isPresent()) {
             return false;
         }
 

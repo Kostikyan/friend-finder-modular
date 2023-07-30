@@ -1,9 +1,9 @@
 package com.friendfinder.friendfinderrest.endpoint;
 
 import com.friendfinder.friendfindercommon.entity.User;
+import com.friendfinder.friendfindercommon.exception.custom.DeleteFriendNotFoundException;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.FriendRequestService;
-import com.friendfinder.friendfindercommon.exception.custom.DeleteFriendNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -29,13 +29,13 @@ public class FriendEndpoint {
     /**
      * Retrieves a list of user's friends by page number.
      *
-     * @param currentPage   The current page number.
-     * @param currentUser   The currently authenticated user.
+     * @param currentPage The current page number.
+     * @param currentUser The currently authenticated user.
      * @return ResponseEntity with a list of user's friends for the requested page.
      */
     @GetMapping("/page/{pageNumber}")
     public ResponseEntity<List<User>> listByPage(@PathVariable("pageNumber") int currentPage,
-                             @AuthenticationPrincipal CurrentUser currentUser) {
+                                                 @AuthenticationPrincipal CurrentUser currentUser) {
         Page<User> page = friendRequestService.userFriendsPageByUserId(currentUser.getUser().getId(), currentPage);
         List<User> content = page.getContent();
 
@@ -45,13 +45,13 @@ public class FriendEndpoint {
     /**
      * Deletes a friend relationship between two users.
      *
-     * @param sender    The user who sent the friend request.
-     * @param receiver  The user who received the friend request.
+     * @param sender   The user who sent the friend request.
+     * @param receiver The user who received the friend request.
      * @return ResponseEntity with no content if the friend relationship is successfully deleted, or not found if the friend relationship does not exist.
      */
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteFromFriends(@RequestParam("sender") User sender,
-                                            @RequestParam("receiver") User receiver) {
+    public ResponseEntity<String> deleteFromFriends(@RequestParam("sender") User sender,
+                                               @RequestParam("receiver") User receiver) {
         if (friendRequestService.delete(sender, receiver)) {
             return ResponseEntity.noContent().build();
         }

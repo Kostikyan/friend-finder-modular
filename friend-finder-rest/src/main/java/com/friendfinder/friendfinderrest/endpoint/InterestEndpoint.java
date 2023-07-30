@@ -26,8 +26,8 @@ public class InterestEndpoint {
     /**
      * Adds an interest to the user's profile.
      *
-     * @param interest      The interest to be added to the user's profile.
-     * @param currentUser   The currently authenticated user (obtained from the security context).
+     * @param interest    The interest to be added to the user's profile.
+     * @param currentUser The currently authenticated user (obtained from the security context).
      * @return ResponseEntity with a success message if the interest is added successfully.
      */
     @PostMapping("/add")

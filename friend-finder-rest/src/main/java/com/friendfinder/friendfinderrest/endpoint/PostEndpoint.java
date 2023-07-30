@@ -38,8 +38,8 @@ public class PostEndpoint {
     /**
      * Retrieves a list of posts by friends for the authenticated user.
      *
-     * @param currentPage   The current page number for pagination.
-     * @param currentUser   The currently authenticated user (obtained from the security context).
+     * @param currentPage The current page number for pagination.
+     * @param currentUser The currently authenticated user (obtained from the security context).
      * @return ResponseEntity with the list of posts for the specified page.
      */
     @GetMapping("/page/{pageNumber}")
@@ -54,17 +54,17 @@ public class PostEndpoint {
     /**
      * Adds a new post with the specified content, image, and video.
      *
-     * @param requestDto    The PostRequestDto containing the post content.
-     * @param currentUser   The currently authenticated user (obtained from the security context).
-     * @param image         The image file attached to the post (optional).
-     * @param video         The video file attached to the post (optional).
+     * @param requestDto  The PostRequestDto containing the post content.
+     * @param currentUser The currently authenticated user (obtained from the security context).
+     * @param image       The image file attached to the post (optional).
+     * @param video       The video file attached to the post (optional).
      * @return ResponseEntity with the newly created post.
      */
     @PostMapping("/add")
     public ResponseEntity<Post> postAdd(PostRequestDto requestDto,
-            @AuthenticationPrincipal CurrentUser currentUser,
-            @RequestParam("image") MultipartFile image,
-            @RequestParam("video") MultipartFile video) {
+                                        @AuthenticationPrincipal CurrentUser currentUser,
+                                        @RequestParam("image") MultipartFile image,
+                                        @RequestParam("video") MultipartFile video) {
         return ResponseEntity.ok(postService.postSave(requestDto, currentUser, image, video));
     }
 
@@ -93,9 +93,9 @@ public class PostEndpoint {
      * @return ResponseEntity containing the created PostLike object if successful.
      */
     @PostMapping("/reaction/dislike/{postId}")
-    public ResponseEntity<PostLike> addDislike( PostLikeDto postLikeDto,
-                             @AuthenticationPrincipal CurrentUser currentUser,
-                             @PathVariable(name = "postId") Post post) {
+    public ResponseEntity<PostLike> addDislike(PostLikeDto postLikeDto,
+                                               @AuthenticationPrincipal CurrentUser currentUser,
+                                               @PathVariable(name = "postId") Post post) {
         postLikeDto.setLikeStatus(LikeStatus.DISLIKE);
         return ResponseEntity.ok(likeAndDislikeService.saveReaction(postLikeDto, currentUser, post));
     }
@@ -122,7 +122,7 @@ public class PostEndpoint {
      * @return ResponseEntity containing the deleted Comment object if successful.
      */
     @DeleteMapping("/comment/delete/{id}")
-    public ResponseEntity<Comment>  removeComment(@PathVariable("id") int id) {
+    public ResponseEntity<Comment> removeComment(@PathVariable("id") int id) {
         return ResponseEntity.ok(commentService.deleteComment(id));
     }
 }

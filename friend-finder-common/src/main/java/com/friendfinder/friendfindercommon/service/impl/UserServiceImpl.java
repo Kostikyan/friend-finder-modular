@@ -1,25 +1,22 @@
 package com.friendfinder.friendfindercommon.service.impl;
 
-import com.friendfinder.friendfindercommon.dto.userDto.UserAuthResponseDto;
 import com.friendfinder.friendfindercommon.dto.userDto.UserLoginRequestDto;
 import com.friendfinder.friendfindercommon.dto.userDto.UserRegisterRequestDto;
 import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import com.friendfinder.friendfindercommon.exception.custom.UserLoginException;
+import com.friendfinder.friendfindercommon.mapper.UserRegisterMapper;
 import com.friendfinder.friendfindercommon.repository.CountryRepository;
 import com.friendfinder.friendfindercommon.repository.UserRepository;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.FriendRequestService;
 import com.friendfinder.friendfindercommon.service.UserService;
-import com.friendfinder.friendfindercommon.mapper.UserRegisterMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -139,11 +136,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUserPasswordById(String password, int id) {
-        userRepository.updateUserPasswordById(password, id);
-    }
-
-    @Override
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -222,13 +214,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean changePassword(String oldPass, String newPass, String confPass, User user) {
-        if (passwordEncoder.matches(oldPass, user.getPassword())) {
-            if (newPass.equals(confPass)) {
-                String encodedPass = passwordEncoder.encode(newPass);
-                user.setPassword(encodedPass);
-                userRepository.updateUserPasswordById(encodedPass, user.getId());
-                return true;
-            }
+        if (passwordEncoder.matches(oldPass, user.getPassword()) && newPass.equals(confPass)) {
+            String encodedPass = passwordEncoder.encode(newPass);
+            user.setPassword(encodedPass);
+            userRepository.updateUserPasswordById(encodedPass, user.getId());
+            return true;
         }
         return false;
     }

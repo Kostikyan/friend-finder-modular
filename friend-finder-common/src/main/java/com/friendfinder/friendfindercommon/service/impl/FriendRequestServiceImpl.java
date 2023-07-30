@@ -68,7 +68,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class FriendRequestServiceImpl implements FriendRequestService {
 
-
     private final FriendRequestRepository friendRequestRepository;
     private final UserRepository userRepository;
     private final MailService mailService;
@@ -162,10 +161,10 @@ public class FriendRequestServiceImpl implements FriendRequestService {
         FriendRequest bySenderIdAndReceiverId = findBySenderIdAndReceiverId(sender.getId(), receiver.getId());
         FriendRequest byReceiverIdAndSenderId = findBySenderIdAndReceiverId(receiver.getId(), sender.getId());
         if (bySenderIdAndReceiverId != null) {
-           return delete(bySenderIdAndReceiverId);
+            return delete(bySenderIdAndReceiverId);
         }
         if (byReceiverIdAndSenderId != null) {
-           return delete(byReceiverIdAndSenderId);
+            return delete(byReceiverIdAndSenderId);
         }
         return false;
     }

@@ -10,8 +10,6 @@ import org.mapstruct.Mapping;
 public interface WorkExperiencesMapper {
     WorkExperiences map(WorkExperiencesCreateRequestDto educationDto);
 
-    WorkExperiencesCreateRequestDto mapToRequestDto(WorkExperiences education);
-
     @Mapping(target = "userId", source = "user.id")
     WorkExperiencesCreateResponseDto mapToResponseDto(WorkExperiences education);
 }

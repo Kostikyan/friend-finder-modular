@@ -37,7 +37,7 @@ public class SpringSecurityConfig {
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.GET,"/posts/images/page/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/posts/images/page/**").permitAll()
                         .anyRequest().hasAnyAuthority("ADMIN", "USER")
                 )
                 .formLogin(form -> form

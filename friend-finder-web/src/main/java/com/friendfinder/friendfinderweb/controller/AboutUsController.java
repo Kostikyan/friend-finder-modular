@@ -14,7 +14,7 @@ public class AboutUsController {
     @GetMapping
     public String aboutUsPage(@AuthenticationPrincipal CurrentUser currentUser,
                               ModelMap map
-    ){
+    ) {
         map.addAttribute("user", currentUser.getUser());
         return "about-us";
     }

@@ -71,9 +71,9 @@ public class PostImageEndpoint {
      * @return ResponseEntity containing the created PostLike object if successful.
      */
     @PostMapping("/reaction/dislike/{postId}")
-    public ResponseEntity<PostLike> addDislike( PostLikeDto postLikeDto,
-                                                @AuthenticationPrincipal CurrentUser currentUser,
-                                                @PathVariable(name = "postId") Post post) {
+    public ResponseEntity<PostLike> addDislike(PostLikeDto postLikeDto,
+                                               @AuthenticationPrincipal CurrentUser currentUser,
+                                               @PathVariable(name = "postId") Post post) {
         postLikeDto.setLikeStatus(LikeStatus.DISLIKE);
         return ResponseEntity.ok(likeAndDislikeService.saveReaction(postLikeDto, currentUser, post));
     }
@@ -100,7 +100,7 @@ public class PostImageEndpoint {
      * @return ResponseEntity containing the deleted Comment object if successful.
      */
     @DeleteMapping("/comment/delete")
-    public ResponseEntity<Comment>  removeComment(@RequestParam("id") int id) {
+    public ResponseEntity<Comment> removeComment(@RequestParam("id") int id) {
         return ResponseEntity.ok(commentService.deleteComment(id));
     }
 }

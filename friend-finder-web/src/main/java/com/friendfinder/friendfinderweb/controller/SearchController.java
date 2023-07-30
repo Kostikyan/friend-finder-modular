@@ -10,7 +10,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,9 +27,9 @@ public class SearchController {
 
     @PostMapping("/{pageNumber}")
     public String listByPageSearch(@RequestParam String keyword,
-                                  @PathVariable("pageNumber") int currentPage, ModelMap modelMap,
-                                  @AuthenticationPrincipal CurrentUser currentUser) {
-        Page<User> page = searchService.searchByKeyword(keyword,currentUser,currentPage);
+                                   @PathVariable("pageNumber") int currentPage, ModelMap modelMap,
+                                   @AuthenticationPrincipal CurrentUser currentUser) {
+        Page<User> page = searchService.searchByKeyword(keyword, currentUser, currentPage);
 
         long totalItems = page.getTotalElements();
         long totalPages = page.getTotalPages();
@@ -37,7 +40,7 @@ public class SearchController {
         modelMap.addAttribute("result", page.getContent());
         modelMap.addAttribute("requestSenders", friendRequestService.findSenderByReceiverId(currentUser.getUser().getId()));
         modelMap.addAttribute("user", currentUser.getUser());
-        modelMap.addAttribute("users",userService.userForAddFriend(currentUser));
+        modelMap.addAttribute("users", userService.userForAddFriend(currentUser));
         modelMap.addAttribute("allExceptCurrentUser", userService.findAllExceptCurrentUser(currentUser.getUser().getId()));
         return "resultOfSearchUsers";
     }

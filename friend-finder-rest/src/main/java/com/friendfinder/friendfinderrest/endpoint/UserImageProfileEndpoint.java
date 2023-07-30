@@ -4,15 +4,12 @@ import com.friendfinder.friendfindercommon.entity.FriendRequest;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.UserImage;
 import com.friendfinder.friendfindercommon.entity.types.FriendStatus;
-import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.FriendRequestService;
 import com.friendfinder.friendfindercommon.service.UserImageService;
 import com.friendfinder.friendfindercommon.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,8 +32,8 @@ public class UserImageProfileEndpoint {
     /**
      * Endpoint to retrieve a paginated list of user images for a specific user.
      *
-     * @param user         The User object representing the user whose images to retrieve.
-     * @param currentPage  The page number of the images list to retrieve.
+     * @param user        The User object representing the user whose images to retrieve.
+     * @param currentPage The page number of the images list to retrieve.
      * @return ResponseEntity containing a list of UserImage objects representing the user's images.
      */
     @GetMapping("/{userId}/page/{pageNumber}")

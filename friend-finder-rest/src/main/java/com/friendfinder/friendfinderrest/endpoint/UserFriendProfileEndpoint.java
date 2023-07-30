@@ -29,8 +29,8 @@ public class UserFriendProfileEndpoint {
     /**
      * Endpoint to retrieve a paginated list of friends for a specific user.
      *
-     * @param user         The User object representing the user whose friends to retrieve.
-     * @param currentPage  The page number of the friends list to retrieve.
+     * @param user        The User object representing the user whose friends to retrieve.
+     * @param currentPage The page number of the friends list to retrieve.
      * @return ResponseEntity containing a list of User objects representing the user's friends.
      */
     @GetMapping("/{userId}/page/{pageNumber}")
@@ -50,7 +50,7 @@ public class UserFriendProfileEndpoint {
      */
     @GetMapping("/send-request")
     public ResponseEntity<FriendRequest> sendRequest(@RequestParam int sender,
-                              @RequestParam int receiver) {
+                                                     @RequestParam int receiver) {
         Optional<User> senderId = userService.findUserById(sender);
         Optional<User> receiverId = userService.findUserById(receiver);
         FriendRequest friendRequest = new FriendRequest();

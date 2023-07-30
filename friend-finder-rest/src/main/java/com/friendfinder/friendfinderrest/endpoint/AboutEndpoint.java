@@ -2,12 +2,12 @@ package com.friendfinder.friendfinderrest.endpoint;
 
 import com.friendfinder.friendfindercommon.dto.userDto.AboutUserDto;
 import com.friendfinder.friendfindercommon.entity.User;
+import com.friendfinder.friendfindercommon.exception.custom.ChangePasswordException;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.InterestsService;
 import com.friendfinder.friendfindercommon.service.LanguageService;
 import com.friendfinder.friendfindercommon.service.UserService;
 import com.friendfinder.friendfindercommon.service.WorkExperiencesService;
-import com.friendfinder.friendfindercommon.exception.custom.ChangePasswordException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +50,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Slf4j
 public class AboutEndpoint {
+
     private final WorkExperiencesService workExperiencesService;
     private final InterestsService interestsService;
     private final LanguageService languageService;
@@ -82,15 +83,15 @@ public class AboutEndpoint {
      * and password confirmation. The user's password is updated if the provided old password matches the
      * current password and the new password matches the password confirmation.
      *
-     * @param oldPass   The user's current password.
-     * @param newPass   The new password to be set.
-     * @param confPass  The confirmation of the new password.
+     * @param oldPass     The user's current password.
+     * @param newPass     The new password to be set.
+     * @param confPass    The confirmation of the new password.
      * @param currentUser The authenticated user making the password change request.
      * @return ResponseEntity with HTTP status 200 if the password change is successful,
-     *         ResponseEntity with HTTP status 400 if the request is invalid.
+     * ResponseEntity with HTTP status 400 if the request is invalid.
      */
     @PostMapping("/change-password")
-    public ResponseEntity<?> changePassword(@RequestParam("oldPass") String oldPass,
+    public ResponseEntity<String> changePassword(@RequestParam("oldPass") String oldPass,
                                             @RequestParam("newPass") String newPass,
                                             @RequestParam("confPass") String confPass,
                                             @AuthenticationPrincipal CurrentUser currentUser) {

@@ -3,6 +3,8 @@ package com.friendfinder.friendfindercommon.security;
 import com.friendfinder.friendfindercommon.entity.User;
 import org.springframework.security.core.authority.AuthorityUtils;
 
+import java.util.Objects;
+
 /**
  * <p>Custom implementation of the Spring Security User class, representing the currently authenticated user
  * along with associated details. This class extends the standard User class to provide additional functionality.

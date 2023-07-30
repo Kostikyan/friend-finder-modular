@@ -12,7 +12,9 @@ import java.util.List;
 public interface PostService {
 
     Page<Post> postFindPage(int pageNumber, CurrentUser currentUser);
+
     Page<Post> postFindPageVideo(int pageNumber, CurrentUser currentUser);
+
     Page<Post> postFindPageImage(int pageNumber, CurrentUser currentUser);
 
     Page<Post> postPageByUserId(int userId, int pageNumber);

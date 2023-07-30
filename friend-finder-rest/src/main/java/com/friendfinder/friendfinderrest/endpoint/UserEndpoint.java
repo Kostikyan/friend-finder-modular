@@ -40,7 +40,7 @@ public class UserEndpoint {
     @PostMapping("/login")
     public ResponseEntity<UserAuthResponseDto> auth(@RequestBody UserLoginRequestDto loginRequestDto) {
         boolean result = userService.userLogin(loginRequestDto);
-        if(!result) ResponseEntity.status(HttpStatus.BAD_REQUEST);
+        if (!result) ResponseEntity.status(HttpStatus.BAD_REQUEST);
 
         String token = tokenUtil.generateToken(loginRequestDto.getEmail());
         return ResponseEntity.ok(new UserAuthResponseDto(token));
@@ -55,6 +55,7 @@ public class UserEndpoint {
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody UserRegisterRequestDto registerRequestDto) {
         User user = userService.userRegister(registerRequestDto);
+        if(user == null) return ResponseEntity.badRequest().build();
         return ResponseEntity.ok(userMapper.mapToUserDto(user));
     }
 }

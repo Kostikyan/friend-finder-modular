@@ -52,13 +52,13 @@ public class TimelineEndpoint {
     /**
      * Endpoint for changing the user's profile picture.
      *
-     * @param profilePic   The MultipartFile containing the new profile picture.
-     * @param currentUser  The CurrentUser object representing the currently logged-in user.
+     * @param profilePic  The MultipartFile containing the new profile picture.
+     * @param currentUser The CurrentUser object representing the currently logged-in user.
      * @return ResponseEntity with a success message after changing the profile picture.
      */
     @PostMapping("/change-profile-pic")
     public ResponseEntity<String> changeProfilePic(@RequestParam MultipartFile profilePic,
-                                                  @AuthenticationPrincipal CurrentUser currentUser) {
+                                                   @AuthenticationPrincipal CurrentUser currentUser) {
         UserImage userImage = UserImage.builder()
                 .imageName(profilePic.getName())
                 .user(currentUser.getUser())
@@ -72,13 +72,13 @@ public class TimelineEndpoint {
     /**
      * Endpoint for changing the user's profile background picture.
      *
-     * @param image        The MultipartFile containing the new profile background picture.
-     * @param currentUser  The CurrentUser object representing the currently logged-in user.
+     * @param image       The MultipartFile containing the new profile background picture.
+     * @param currentUser The CurrentUser object representing the currently logged-in user.
      * @return ResponseEntity with a success message after changing the profile background picture.
      */
     @PostMapping("/change-profile-bg-pic")
     public ResponseEntity<String> changeProfileBackgroundPic(@RequestParam MultipartFile image,
-                                                            @AuthenticationPrincipal CurrentUser currentUser) {
+                                                             @AuthenticationPrincipal CurrentUser currentUser) {
         User user = timelineService.updateUserProfileBackgroundPic(image, currentUser);
         return ResponseEntity.ok("the user with id {" + user.getId() + "} has changed the profile background picture");
     }

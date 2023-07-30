@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface EducationRepository extends JpaRepository<Education, Integer> {
 
-
     List<Education> findAllByUserId(int userId);
 }

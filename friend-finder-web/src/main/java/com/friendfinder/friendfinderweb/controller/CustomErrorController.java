@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CustomErrorController implements ErrorController {
 
-    @RequestMapping( "/error")
+    @RequestMapping("/error")
     public String handleError(HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         if (status != null) {
@@ -18,9 +18,9 @@ public class CustomErrorController implements ErrorController {
 
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
                 return "404";
-            }else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+            } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 return "500";
-            }else if (statusCode == HttpStatus.FORBIDDEN.value()){
+            } else if (statusCode == HttpStatus.FORBIDDEN.value()) {
                 return "403";
             }
         }

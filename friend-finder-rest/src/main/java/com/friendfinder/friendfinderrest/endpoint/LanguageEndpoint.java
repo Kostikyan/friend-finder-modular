@@ -21,13 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/language")
 @RequiredArgsConstructor
 public class LanguageEndpoint {
+
     private final LanguageService languageService;
 
     /**
      * Adds a language to the user's profile.
      *
-     * @param lang           The language to be added to the user's profile.
-     * @param current        The currently authenticated user (obtained from the security context).
+     * @param lang    The language to be added to the user's profile.
+     * @param current The currently authenticated user (obtained from the security context).
      * @return ResponseEntity with the LanguageCreateResponseDto containing the newly added language details.
      */
     @PostMapping("/add")

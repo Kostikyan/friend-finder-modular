@@ -1,8 +1,8 @@
 package com.friendfinder.friendfinderrest.endpoint;
 
 import com.friendfinder.friendfindercommon.dto.contactDto.ContactFormRequestDto;
-import com.friendfinder.friendfindercommon.service.impl.MailService;
 import com.friendfinder.friendfindercommon.exception.custom.FilterMailContactException;
+import com.friendfinder.friendfindercommon.service.impl.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -56,7 +56,7 @@ public class ContactEndpoint {
      * @param contactFormRequestDto The DTO containing the contact form information.
      * @return True if all required fields are not null, false otherwise.
      */
-    boolean filterMailContact(ContactFormRequestDto contactFormRequestDto){
+    boolean filterMailContact(ContactFormRequestDto contactFormRequestDto) {
         return contactFormRequestDto.getSubject() != null &&
                 contactFormRequestDto.getEmail() != null &&
                 contactFormRequestDto.getText() != null &&

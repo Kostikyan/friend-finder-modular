@@ -3,8 +3,8 @@ package com.friendfinder.friendfinderrest.endpoint;
 import com.friendfinder.friendfindercommon.entity.FriendRequest;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.types.FriendStatus;
-import com.friendfinder.friendfindercommon.service.FriendRequestService;
 import com.friendfinder.friendfindercommon.exception.custom.RejectFriendRequestException;
+import com.friendfinder.friendfindercommon.service.FriendRequestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Slf4j
 public class FriendRequestEndpoint {
+
     private final FriendRequestService friendRequestService;
 
     /**
@@ -62,11 +63,11 @@ public class FriendRequestEndpoint {
      * @return ResponseEntity with no content if the friend request is successfully rejected, or not found if the friend request does not exist.
      */
     @PostMapping("/reject-request")
-    public ResponseEntity<?> rejectRequest(@RequestParam("sender") User sender,
+    public ResponseEntity<String> rejectRequest(@RequestParam("sender") User sender,
                                            @RequestParam("receiver") User receiver) {
 
         FriendRequest bySenderIdAndReceiverId = friendRequestService.findBySenderIdAndReceiverId(sender.getId(), receiver.getId());
-        if(bySenderIdAndReceiverId==null){
+        if (bySenderIdAndReceiverId == null) {
             log.error("not found users", new RejectFriendRequestException());
             return ResponseEntity.notFound().build();
         }

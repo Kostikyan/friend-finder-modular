@@ -22,6 +22,6 @@ public class AspectUser {
 
     @After("execution(* com.friendfinder.friendfindercommon.service.UserService.userRegister(com.friendfinder.friendfindercommon.dto.userDto.UserRegisterRequestDto)) && args(dto)")
     public void afterUserRegister(UserRegisterRequestDto dto) {
-        log.info("Register user: name: " + dto.getName() + " surname: " + dto.getSurname() + " email: " + dto.getEmail());
+        log.info("Register user: name: " + dto.getName() + ", surname: " + dto.getSurname() + ", email: " + dto.getEmail());
     }
 }

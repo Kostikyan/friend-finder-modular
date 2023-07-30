@@ -32,25 +32,25 @@ public class InputEndpoint {
 
     @GetMapping(value = "/getImage",
             produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getImage(@RequestParam("imageName") String imageName){
+    public @ResponseBody byte[] getImage(@RequestParam("imageName") String imageName) {
         return mainService.getImage(imageName);
     }
 
     @GetMapping(value = "/getVideo",
             produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getVideo(@RequestParam("videoName") String videoName){
+    public @ResponseBody byte[] getVideo(@RequestParam("videoName") String videoName) {
         return mainService.getVideo(videoName);
     }
 
     @GetMapping(value = "/getProfilePic",
             produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getProfilePic(@RequestParam("imageName") String imageName){
+    public @ResponseBody byte[] getProfilePic(@RequestParam("imageName") String imageName) {
         return mainService.getProfilePic(imageName);
     }
 
     @GetMapping(value = "/getBgProfilePic",
             produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getBgProfilePic(@RequestParam("imageName") String imageName){
+    public @ResponseBody byte[] getBgProfilePic(@RequestParam("imageName") String imageName) {
         return mainService.getBgProfilePic(imageName);
     }
 

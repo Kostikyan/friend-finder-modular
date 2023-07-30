@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface FriendRequestService {
 
-
     Page<User> userFriendsPageByUserId(int userId, int pageNumber);
 
     FriendRequest save(FriendRequest friendRequest);

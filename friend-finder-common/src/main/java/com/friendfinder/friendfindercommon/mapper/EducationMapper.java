@@ -10,8 +10,6 @@ import org.mapstruct.Mapping;
 public interface EducationMapper {
     Education map(EducationCreateRequestDto educationDto);
 
-    EducationCreateRequestDto mapToRequestDto(Education education);
-
     @Mapping(target = "userId", source = "user.id")
     EducationCreateResponseDto mapToResponseDto(Education education);
 }

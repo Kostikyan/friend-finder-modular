@@ -90,7 +90,7 @@ public class UserImageServiceImpl implements UserImageService {
     @Override
     public UserImage deleteUserImageById(int id) {
         Optional<UserImage> byId = userImageRepository.findById(id);
-        if (byId.isPresent()){
+        if (byId.isPresent()) {
             UserImage userImage = byId.get();
             userImageRepository.deleteById(userImage.getId());
         }

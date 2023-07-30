@@ -4,6 +4,7 @@ import com.friendfinder.friendfindercommon.dto.postDto.PostRequestDto;
 import com.friendfinder.friendfindercommon.dto.postDto.PostResponseDto;
 import com.friendfinder.friendfindercommon.entity.Post;
 import com.friendfinder.friendfindercommon.entity.User;
+import com.friendfinder.friendfindercommon.mapper.PostMapper;
 import com.friendfinder.friendfindercommon.repository.PostRepository;
 import com.friendfinder.friendfindercommon.repository.UserRepository;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
@@ -11,7 +12,6 @@ import com.friendfinder.friendfindercommon.service.FriendRequestService;
 import com.friendfinder.friendfindercommon.service.PostService;
 import com.friendfinder.friendfindercommon.service.UserActivityService;
 import com.friendfinder.friendfindercommon.util.ImageUtil;
-import com.friendfinder.friendfindercommon.mapper.PostMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -21,11 +21,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * <p>
@@ -192,7 +188,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post deletePostId(int id) {
         Optional<Post> byId = postRepository.findById(id);
-        if (byId.isPresent()){
+        if (byId.isPresent()) {
             Post post = byId.get();
             postRepository.deleteById(post.getId());
         }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequiredArgsConstructor
 public class FriendRequestController {
+
     private final FriendRequestService friendRequestService;
 
     @GetMapping("/send-request")

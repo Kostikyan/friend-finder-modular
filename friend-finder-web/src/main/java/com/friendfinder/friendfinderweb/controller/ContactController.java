@@ -22,7 +22,7 @@ public class ContactController {
     public String contactPage(
             @AuthenticationPrincipal CurrentUser currentUser,
             ModelMap modelMap
-    ){
+    ) {
         modelMap.addAttribute("user", currentUser.getUser());
         return "contact-form";
     }
@@ -33,8 +33,8 @@ public class ContactController {
             @RequestParam("email") String fromEmail,
             @RequestParam("subject") String subject,
             @RequestParam("message") String text
-    ){
-        mailService.sendFromMail(fromEmail, subject, name ,text);
+    ) {
+        mailService.sendFromMail(fromEmail, subject, name, text);
         return "redirect:/contact";
     }
 }

@@ -1,9 +1,9 @@
 package com.friendfinder.friendfindercommon.service.impl;
 
 import com.friendfinder.friendfindercommon.entity.Interest;
+import com.friendfinder.friendfindercommon.repository.InterestsRepository;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.InterestsService;
-import com.friendfinder.friendfindercommon.repository.InterestsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

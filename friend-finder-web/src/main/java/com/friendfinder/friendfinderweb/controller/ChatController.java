@@ -30,7 +30,7 @@ public class ChatController {
     private final FriendRequestService friendRequestService;
 
     @GetMapping("/messages")
-    public String messagesPage(@AuthenticationPrincipal CurrentUser currentUser, ModelMap modelMap){
+    public String messagesPage(@AuthenticationPrincipal CurrentUser currentUser, ModelMap modelMap) {
         List<Chat> allChats = chatService.findAllByCurrentUserId(currentUser.getUser().getId());
         allChats.addAll(chatService.findAllByAnotherUserId(currentUser.getUser().getId()));
 
@@ -44,7 +44,7 @@ public class ChatController {
     }
 
     @GetMapping("/chat/create/{id}")
-    public String createNewChat(@PathVariable("id") int userId, @AuthenticationPrincipal CurrentUser currentUser){
+    public String createNewChat(@PathVariable("id") int userId, @AuthenticationPrincipal CurrentUser currentUser) {
         chatService.create(userId, currentUser.getUser());
         return "redirect:/newsfeed/messages";
     }
@@ -53,14 +53,14 @@ public class ChatController {
     public String sendMessage(@AuthenticationPrincipal CurrentUser currentUser,
                               @RequestParam("chatId") int chatId,
                               @RequestParam("receiverId") int receiverId,
-                              @RequestParam("content") String content){
+                              @RequestParam("content") String content) {
         Optional<User> userById = userService.findUserById(receiverId);
         if (userById.isEmpty()) {
             return "redirect:/newsfeed/messages";
         }
 
         Optional<Chat> chatById = chatService.findById(chatId);
-        if(chatById.isEmpty()){
+        if (chatById.isEmpty()) {
             return "redirect:/newsfeed/messages";
         }
 

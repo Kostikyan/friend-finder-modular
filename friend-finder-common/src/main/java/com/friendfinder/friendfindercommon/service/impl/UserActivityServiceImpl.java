@@ -45,6 +45,7 @@ import java.util.Optional;
 public class UserActivityServiceImpl implements UserActivityService {
 
     private final UserActivityRepository userActivityRepository;
+
     @Override
     public List<UserActivity> getAllByUserId(int userId) {
         Optional<List<UserActivity>> allByUserId = userActivityRepository.findTop4ByUserIdOrderByDateTimeDesc(userId);

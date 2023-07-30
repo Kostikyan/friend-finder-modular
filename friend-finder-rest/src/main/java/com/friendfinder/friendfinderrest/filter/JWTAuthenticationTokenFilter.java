@@ -66,7 +66,7 @@ public class JWTAuthenticationTokenFilter extends OncePerRequestFilter {
             try {
                 username = tokenUtil.getUsernameFromToken(authToken);
             } catch (Exception e) {
-               e.printStackTrace();
+                e.printStackTrace();
             }
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

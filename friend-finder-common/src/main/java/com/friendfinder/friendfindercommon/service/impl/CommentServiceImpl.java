@@ -3,11 +3,11 @@ package com.friendfinder.friendfindercommon.service.impl;
 import com.friendfinder.friendfindercommon.dto.commentDto.CommentRequestDto;
 import com.friendfinder.friendfindercommon.entity.Comment;
 import com.friendfinder.friendfindercommon.entity.Post;
+import com.friendfinder.friendfindercommon.mapper.CommentMapper;
+import com.friendfinder.friendfindercommon.repository.CommentRepository;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.CommentService;
 import com.friendfinder.friendfindercommon.service.UserActivityService;
-import com.friendfinder.friendfindercommon.mapper.CommentMapper;
-import com.friendfinder.friendfindercommon.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -69,14 +69,14 @@ public class CommentServiceImpl implements CommentService {
                 .commentaryText(comment.getCommentaryText())
                 .datetime(LocalDateTime.now())
                 .build());
-        userActivityService.save(currentUser.getUser(),"commented on a post");
+        userActivityService.save(currentUser.getUser(), "commented on a post");
         return commentRepository.save(commentSave);
     }
 
     @Override
     public Comment deleteComment(int id) {
         Optional<Comment> byId = commentRepository.findById(id);
-        if (byId.isPresent()){
+        if (byId.isPresent()) {
             Comment comment = byId.get();
             commentRepository.deleteById(comment.getId());
         }

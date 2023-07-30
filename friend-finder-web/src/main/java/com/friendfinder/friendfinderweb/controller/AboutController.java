@@ -1,12 +1,13 @@
 package com.friendfinder.friendfinderweb.controller;
 
-import com.friendfinder.friendfindercommon.entity.*;
-import com.friendfinder.friendfindercommon.entity.types.FriendStatus;
+import com.friendfinder.friendfindercommon.entity.Interest;
+import com.friendfinder.friendfindercommon.entity.Language;
+import com.friendfinder.friendfindercommon.entity.User;
+import com.friendfinder.friendfindercommon.entity.WorkExperiences;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
 import com.friendfinder.friendfindercommon.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,6 @@ public class AboutController {
     private final InterestsService interestsService;
     private final LanguageService languageService;
     private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
     private final FriendRequestService friendRequestService;
     private final UserActivityService userActivityService;
 
