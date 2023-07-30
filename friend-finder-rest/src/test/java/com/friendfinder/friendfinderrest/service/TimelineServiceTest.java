@@ -5,7 +5,6 @@ import com.friendfinder.friendfindercommon.entity.Country;
 import com.friendfinder.friendfindercommon.entity.User;
 import com.friendfinder.friendfindercommon.entity.UserImage;
 import com.friendfinder.friendfindercommon.entity.types.UserGender;
-import com.friendfinder.friendfindercommon.entity.types.UserRole;
 import com.friendfinder.friendfindercommon.repository.CountryRepository;
 import com.friendfinder.friendfindercommon.repository.UserRepository;
 import com.friendfinder.friendfindercommon.security.CurrentUser;
@@ -24,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.friendfinder.friendfinderrest.util.TestUtil.mockCurrentUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
@@ -135,23 +135,6 @@ class TimelineServiceTest {
                 updatedUser.getProfileBackgroundPic().contains("image1010IgOsadlCAAsd"));
     }
 
-    private CurrentUser mockCurrentUser() {
-        Country country = new Country(1, "Afghanistan");
-        User currentUser = User.builder()
-                .id(1)
-                .name("user")
-                .surname("user")
-                .email("user1@mail.ru")
-                .password("user")
-                .dateOfBirth(new Date(1990, 5, 15))
-                .gender(UserGender.MALE)
-                .city("New York")
-                .country(country)
-                .personalInformation("Some personal info")
-                .enabled(true)
-                .role(UserRole.USER)
-                .build();
-        return new CurrentUser(currentUser);
-    }
+
 
 }
